@@ -85,4 +85,22 @@ public class CampaignShould {
         assertEquals(expectedRemainingBudget, remainingBudget);
     }
 
+    @Test
+    public void finish_when_budget_reaches_0_or_below(){
+        ID campaign_id = new ID(2);
+        Budget lowBudget = new Budget(0.01);
+        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget);
+
+        Date clickDate = new Date();
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+
+        lowBudgetCampaign.charge(standardClick);
+
+        boolean isFinished = lowBudgetCampaign.isFinished();
+        assertEquals(true, isFinished);
+    }
+
 }

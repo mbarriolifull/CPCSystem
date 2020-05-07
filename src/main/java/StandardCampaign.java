@@ -34,10 +34,21 @@ public class StandardCampaign implements Campaign {
         if (click.isPremium()) {
             budget.charge(0.05);
         }
+        if (budget.getBudget() <= 0){
+            campaignState = CampaignState.FINISHED;
+        }
     }
 
     @Override
     public double remainingBudget() {
         return budget.getBudget();
+    }
+
+    @Override
+    public boolean isFinished() {
+        if (campaignState.equals(CampaignState.FINISHED)){
+            return true;
+        }
+        return false;
     }
 }
