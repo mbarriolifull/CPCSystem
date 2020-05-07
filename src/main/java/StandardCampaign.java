@@ -17,7 +17,7 @@ public class StandardCampaign implements Campaign {
 
     @Override
     public void activate() {
-
+        campaignState = CampaignState.ACTIVE;
     }
 
     @Override

@@ -67,4 +67,22 @@ public class CampaignShould {
 
     }
 
+    @Test
+    public void reactivate_in_order_to_continue_charging_clicks(){
+        Date clickDate = new Date();
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+
+        campaign.pause();
+        campaign.activate();
+        campaign.charge(standardClick);
+
+        double remainingBudget = campaign.remainingBudget();
+        double expectedRemainingBudget = 99.99;
+
+        assertEquals(expectedRemainingBudget, remainingBudget);
+    }
+
 }
