@@ -1,0 +1,47 @@
+import DataValues.ID;
+import Entities.Campaign;
+import Entities.Click;
+import Entities.TrialCampaign;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TrialCampaignShould {
+
+    private Campaign campaign;
+
+    @BeforeEach
+    public void setup(){
+        ID id_campaign = new ID(1);
+        campaign = new TrialCampaign(id_campaign);
+    }
+
+    @Test
+    public void not_charge_for_clicks_to_trial_campaigns(){
+
+
+        Date clickDate = new Date(2020,5,7,10,0,0);
+        Date click2Date = new Date(2020,5,7,11,0,0);
+        Boolean isPremium = false;
+        Boolean isPremium2 = true;
+        ID clickID1 = new ID(2);
+        ID clickID2 = new ID(3);
+        ID userID = new ID(3);
+        Click standardClick1 = new Click(clickID1, clickDate, userID, isPremium);
+        Click standardClick2 = new Click(clickID2, click2Date, userID, isPremium2);
+
+        campaign.charge(standardClick1);
+
+        double expectedRemainingBudget = 0;
+        double remainingBudget = campaign.remainingBudget();
+        assertEquals(expectedRemainingBudget, remainingBudget);
+
+        campaign.charge(standardClick2);
+
+        double remainingBudget2 = campaign.remainingBudget();
+        assertEquals(expectedRemainingBudget, remainingBudget2);
+    }
+}

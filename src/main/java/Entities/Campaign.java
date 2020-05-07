@@ -14,4 +14,6 @@ public interface Campaign {
 
     void setStateCampaign(StateCampaign stateCampaign);
 
+    boolean isduplicated(Click click);
+
 }

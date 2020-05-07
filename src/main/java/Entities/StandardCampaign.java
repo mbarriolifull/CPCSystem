@@ -2,9 +2,7 @@ package Entities;
 
 import DataValues.Budget;
 import DataValues.ID;
-import CampaignState.Active;
-import CampaignState.Finished;
-import CampaignState.StateCampaign;
+import CampaignState.*;
 import Repositories.ClickRepository;
 
 import java.util.List;
@@ -74,6 +72,7 @@ public class StandardCampaign implements Campaign {
         this.stateCampaign = stateCampaign;
     }
 
+    @Override
     public boolean isduplicated(Click click) {
         List<Click> sameUserClick = chargedClicks.retrieveSameUserClicks(click);
         for (Click currentClick : sameUserClick){

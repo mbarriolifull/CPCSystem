@@ -2,18 +2,22 @@ package Entities;
 
 import CampaignState.*;
 import CampaignState.StateCampaign;
+import DataValues.Budget;
 import DataValues.ID;
 import Repositories.ClickRepository;
 
 import java.util.List;
 
-public class TrialCampaign implements Campaign {
+public class TopCampaign implements Campaign {
+
     private ID id;
+    private Budget budget;
     private StateCampaign stateCampaign;
     private ClickRepository chargedClicks;
 
-    public TrialCampaign(ID id) {
+    public TopCampaign(ID id, Budget budget) {
         this.id = id;
+        this.budget = budget;
         stateCampaign = new Active();
         chargedClicks = new ClickRepository();
     }
@@ -37,16 +41,28 @@ public class TrialCampaign implements Campaign {
 
     @Override
     public void chargeToBudget(Click click) {
+        if (!click.isPremium()) {
+            budget.charge(0.1);
+        }
+        if (click.isPremium()) {
+            budget.charge(0.2);
+        }
+        if (budget.getBudget() <= 0){
+            stateCampaign.finish(this);
+        }
         chargedClicks.add(click);
     }
 
     @Override
     public double remainingBudget() {
-        return 0;
+        return budget.getBudget();
     }
 
     @Override
     public boolean isFinished() {
+        if (Finished.class == stateCampaign.getClass()){
+            return true;
+        }
         return false;
     }
 
