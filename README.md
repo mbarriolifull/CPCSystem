@@ -5,7 +5,7 @@
 
 This is a Java project using maven as abuild automation tool. <br/>
 It cointains all tests using junit framework needed in order to secure that all functionalities required can be done. Those tests are located 
-at src/test/java, there is a test class for each class needed to be tested.
+at src/test/java, there is a test class for each class needed to be tested and they make a 100% coverage of the aimed class.
 
 ## Campaign abstract class
 
