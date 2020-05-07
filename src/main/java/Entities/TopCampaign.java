@@ -37,6 +37,7 @@ public class TopCampaign extends Campaign {
         return budget.getBudget();
     }
 
+
     @Override
     public void fakeClicks(Date date, ID userID) {
         List<Click>  clicksSinceDate = super.retrieveCicksSince(date);

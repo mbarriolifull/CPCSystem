@@ -36,20 +36,27 @@ public class StandardCampaign extends Campaign {
         return budget.getBudget();
     }
 
+    @Override
     public void fakeClicks(Date date, ID userid){
         List<Click> clicksSinceDate = super.retrieveCicksSince(date);
         for (Click currentClick : clicksSinceDate){
-            if (currentClick.isFrom(userid)){
-                if (currentClick.isPremium()){
-                    budget.refund(0.05);
-                }
-                if (!currentClick.isPremium()){
-                    budget.refund(0.01);
-                }
-                super.removeClick(currentClick);
-            }
+            calculateRefund(userid, currentClick);
         }
     }
 
+    private void calculateRefund(ID userid, Click currentClick) {
+        if (currentClick.isFrom(userid)){
+            calculateRefundType(currentClick);
+            super.removeClick(currentClick);
+        }
+    }
 
+    private void calculateRefundType(Click currentClick) {
+        if (currentClick.isPremium()){
+            budget.refund(0.05);
+        }
+        if (!currentClick.isPremium()){
+            budget.refund(0.01);
+        }
+    }
 }
