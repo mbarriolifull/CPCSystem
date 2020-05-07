@@ -23,12 +23,16 @@ public class StandardCampaign implements Campaign {
     @Override
     public void charge(Click click) {
         if (campaignState.equals(CampaignState.ACTIVE)) {
-            if (!click.isPremium()) {
-                budget.charge(0.01);
-            }
-            if (click.isPremium()) {
-                budget.charge(0.05);
-            }
+            chargeToBudget(click);
+        }
+    }
+
+    private void chargeToBudget(Click click) {
+        if (!click.isPremium()) {
+            budget.charge(0.01);
+        }
+        if (click.isPremium()) {
+            budget.charge(0.05);
         }
     }
 
