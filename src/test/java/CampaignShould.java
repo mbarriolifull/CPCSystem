@@ -103,4 +103,22 @@ public class CampaignShould {
         assertEquals(true, isFinished);
     }
 
+    @Test
+    public void not_reactivate_when_they_are_already_finished(){
+        ID campaign_id = new ID(2);
+        Budget lowBudget = new Budget(0.01);
+        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget);
+
+        Date clickDate = new Date();
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+
+        lowBudgetCampaign.charge(standardClick);
+        lowBudgetCampaign.activate();
+
+        boolean isFinished = lowBudgetCampaign.isFinished();
+        assertEquals(true, isFinished);
+    }
 }

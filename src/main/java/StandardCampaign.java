@@ -12,12 +12,16 @@ public class StandardCampaign implements Campaign {
 
     @Override
     public void pause() {
-        campaignState = CampaignState.PAUSED;
+        if(!campaignState.equals(CampaignState.FINISHED)){
+            campaignState = CampaignState.PAUSED;
+        }
     }
 
     @Override
     public void activate() {
-        campaignState = CampaignState.ACTIVE;
+        if(!campaignState.equals(CampaignState.FINISHED)){
+            campaignState = CampaignState.ACTIVE;
+        }
     }
 
     @Override
