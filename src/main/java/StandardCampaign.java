@@ -2,17 +2,17 @@ public class StandardCampaign implements Campaign {
 
     private ID id;
     private Budget budget;
-    private boolean active;
+    private CampaignState campaignState;
 
     public StandardCampaign(ID id, Budget budget) {
         this.id = id;
         this.budget = budget;
-        active = true;
+        campaignState = CampaignState.ACTIVE;
     }
 
     @Override
     public void pause() {
-
+        campaignState = CampaignState.PAUSED;
     }
 
     @Override
@@ -22,11 +22,13 @@ public class StandardCampaign implements Campaign {
 
     @Override
     public void charge(Click click) {
-        if (!click.isPremium()){
-            budget.charge(0.01);
-        }
-        if (click.isPremium()){
-            budget.charge(0.05);
+        if (campaignState.equals(CampaignState.ACTIVE)) {
+            if (!click.isPremium()) {
+                budget.charge(0.01);
+            }
+            if (click.isPremium()) {
+                budget.charge(0.05);
+            }
         }
     }
 
