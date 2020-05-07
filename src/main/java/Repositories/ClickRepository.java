@@ -32,10 +32,10 @@ public class ClickRepository {
         clickList.add(click);
     }
 
-    public List<Click> fakeClicks(Date date, ID userID) {
+    public List<Click> clicksSince(Date date) {
         List<Click> fakeClickList = new ArrayList<>();
         for (Click currentClick : clickList){
-            if (currentClick.isFrom(userID) && currentClick.olderThan(date)){
+            if ( currentClick.olderThan(date)){
                 fakeClickList.add(currentClick);
             }
         }

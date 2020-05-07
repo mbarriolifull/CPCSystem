@@ -55,7 +55,7 @@ public class ClickRepositoryShould {
     }
 
     @Test
-    public void retrieve_fake_click_list_given_date_and_user_id(){
+    public void retrieve_clicks_since_given_date(){
         ClickRepository clickRepository = new ClickRepository();
         ID userID = new ID(3);
         ID user2ID = new ID(4);
@@ -81,8 +81,7 @@ public class ClickRepositoryShould {
         clickRepository.add(click4);
 
         Date fakeClickDate = new Date(2020,5,7,10,50,0);
-        ID fakeClickUserId = new ID(3);
-        List<Click> retrievedList = clickRepository.fakeClicks(fakeClickDate, fakeClickUserId);
+        List<Click> retrievedList = clickRepository.clicksSince(fakeClickDate);
         List<Click> expectedList = new ArrayList<>();
         expectedList.add(click3);
         expectedList.add(click4);

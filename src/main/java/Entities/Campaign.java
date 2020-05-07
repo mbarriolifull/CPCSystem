@@ -9,7 +9,7 @@ import Repositories.ClickRepository;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Campaign {
+public abstract class Campaign{
     private ID id;
     private StateCampaign stateCampaign;
     private ClickRepository chargedClicks;
@@ -64,8 +64,8 @@ public abstract class Campaign {
         chargedClicks.add(click);
     }
 
-    public List<Click> retrieveFakeClicks(Date date, ID userID){
-        return chargedClicks.fakeClicks(date, userID);
+    public List<Click> retrieveCicksSince(Date date){
+        return chargedClicks.clicksSince(date);
     }
 
     public abstract void fakeClicks(Date date, ID userID);

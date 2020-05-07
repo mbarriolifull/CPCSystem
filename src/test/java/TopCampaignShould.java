@@ -6,7 +6,6 @@ import Entities.TopCampaign;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.management.BufferPoolMXBean;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,7 +83,7 @@ public class TopCampaignShould {
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
         double remainingBudget = campaign.remainingBudget();
-        double expectedBudget = 100;
+        double expectedBudget = 99.8;
 
         assertEquals(expectedBudget, remainingBudget);
     }

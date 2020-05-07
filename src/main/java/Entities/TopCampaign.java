@@ -1,10 +1,7 @@
 package Entities;
 
-import CampaignState.*;
-import CampaignState.StateCampaign;
 import DataValues.Budget;
 import DataValues.ID;
-import Repositories.ClickRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -42,20 +39,28 @@ public class TopCampaign extends Campaign {
 
     @Override
     public void fakeClicks(Date date, ID userID) {
-        List<Click>  fakeClicks = super.retrieveFakeClicks(date, userID);
+        List<Click>  clicksSinceDate = super.retrieveCicksSince(date);
         double totalFakeClickPrice = 0;
-        for (Click currentClick : fakeClicks){
-            if (currentClick.isPremium()){
-                totalFakeClickPrice += 0.2;
+        double totalClickPriceSinceDate = 0;
+        for (Click currentClick : clicksSinceDate) {
+            if (currentClick.isPremium()) {
+                if (currentClick.isFrom(userID)) {
+                    totalFakeClickPrice += 0.2;
+                }
+                totalClickPriceSinceDate += 0.2;
             }
-            if (!currentClick.isPremium()){
-                totalFakeClickPrice += 0.1;
+            if (!currentClick.isPremium()) {
+                if (currentClick.isFrom(userID)){
+                    totalFakeClickPrice += 0.1;
+                }
+                totalClickPriceSinceDate += 0.1;
             }
             super.removeClick(currentClick);
+
         }
         double fivePercentOfTotalBudget = (5*initialBudget.getBudget())/100;
         if(totalFakeClickPrice < fivePercentOfTotalBudget){
-            budget = initialBudget;
+            budget.refund(totalClickPriceSinceDate);
         }
         else{
             budget.refund(totalFakeClickPrice);

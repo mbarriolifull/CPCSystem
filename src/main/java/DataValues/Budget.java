@@ -1,7 +1,5 @@
 package DataValues;
 
-import Entities.Click;
-
 public class Budget {
     private double budget;
 
