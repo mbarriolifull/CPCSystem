@@ -1,7 +1,7 @@
 
-#Cost Per Click Campaign System
+# Cost Per Click Campaign System
 
-##Project
+## Project
 
 This is a Java project using maven as abuild automation tool. <br/>
 It cointains all tests using junit framework needed in order to secure that all functionalities required can be done. Those tests are located 
@@ -22,27 +22,27 @@ were not meant to care about ID generation and simply we would recieve the ID fr
 or something similar that would depend on the previous IDs of certain object to generate the next one or some external 
 repository where we would check if some object exists based on it's ID I would create those 3 different types of IDs.
 
-##Patterns 
+## Patterns 
 
 #### Builder Pattern for the Click object
 
 Since a Click has a complex constructor with many parameters, I decided to create a Builder for that object in order not
 to commit unwanted mistakes at the time of creating the instance.
 
-####State Pattern for a campaign state
+#### State Pattern for a campaign state
 
 Even though the different states of the campaign (Active, Paused, Finished) don't do anything at the time of performing 
 some actions (ex: When in Paused stated, if the campaing performs a pause() it executes nothing) I decided it'll be a good
 idea to do it that way since the program could escalate with more states or the existing states could slightly change in
 its behaviour.
 
-####Strategy not really implemented
+#### Strategy not really implemented
 
 Even though there is a different behaviour/strategy between the different campaigns at the time of calculating the price
 of the clicks and refunding the fake/BOT clicks, since those behaviours are not implemented by the abstract class but
 it is done at the sublasses instead, those different strategies are already determined by the type of subclass a Campaign is.
 
-##Repositories (Click repository)
+## Repositories (Click repository)
 
 The only repository needed in order to implement this system is the one that stores the Clicks that are charged by a certain
 campaign in order to be able to execute the refunds properly. This repository is first declared as an interface since it could
@@ -50,7 +50,7 @@ be implemented in various ways (SQL, in-memory), the one that is implemented and
 which is an in-memory repository that is injected in the campaign via Constructor in order to fulfill the SOLID principle: Dependency
 Inversion Principle.
 
-##Entrypoint
+## Entrypoint
 
 Whenever an entrypoint is implemented it will need to create the Campaigns choosing between a Standard, Top or Trial campaign 
 and injecting a Click Repository via the constructor. <br/>
@@ -63,12 +63,12 @@ Since currently there is no way to access a campaign ID we would need to impleme
 a method given an ID that checks if it has the same one (this option would not break encapsulation), or a getter method for 
 the ID field (which would break encapsulation).
 
-##Sprint sections
+## Sprint sections
 
 In this section I will try to explain the parts of the system that belong to each Sprint requirement said in the Technical 
 Challenge document. There should be some brief explanation about that as well in the several commits of the repository.
 
-####Sprint 1
+#### Sprint 1
 
 In this part we only knew about one Campaign type which needed to be able to have different states (Paused, Active & Finished)
  meaning that no Clicks can be charged when in Paused or Finished state,
@@ -77,7 +77,7 @@ In this part we only knew about one Campaign type which needed to be able to hav
  
  Since there was no need to keep track of the Clicks in order to validate this Sprint the ClickRepository was not yet created.
 
-####Sprint 2
+#### Sprint 2
 
 In this part we needed to check for duplicated clicks which were the ones that were performed by the same user in less than
 15 seconds of time in between, those clicks that were duplicated could not be charged. To comply with this sprint a ClickRepository 
@@ -85,7 +85,7 @@ was needed to be implemented since at the time of charging for a click, first we
 charged clicks to check whether or not it was duplicated. <br/>
 At this point a way to compare users inside a click entity was also needed to be implemented.
 
-####Sprint 3
+#### Sprint 3
 
 This was the part where we wanted to create several types of campaigns so at this moment, an interface is created for the 
 several campaigns and the one that we already implemented was named StandardCampaign. <br/> 
@@ -96,7 +96,7 @@ When all campaigns were done, I could see that there was a lot of code repetitio
 interface I created an abstract class to implement there all the common code that the campaigns share.
 
 
-####Sprint 4
+#### Sprint 4
 
 At this point we wanted a way to refund fake clicks given by a BOT (certain user ID) since a certain date. <br/>
 We added functionalities at our repository to retrieve all clicks since a certain Date, a way to compare those clicks 
