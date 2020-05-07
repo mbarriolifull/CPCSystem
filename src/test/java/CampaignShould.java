@@ -1,3 +1,5 @@
+import DataValues.*;
+import Entities.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -120,5 +122,46 @@ public class CampaignShould {
 
         boolean isFinished = lowBudgetCampaign.isFinished();
         assertEquals(true, isFinished);
+    }
+
+    @Test
+    public void charge_two_clicks_that_are_not_duplicated(){
+        Date clickDate = new Date(2020,5,7,10,0,0);
+        Date click2Date = new Date(2020,5,7,11,0,0);
+        Boolean isPremium = false;
+        ID firstClickID = new ID(2);
+        ID secondClickID = new ID(3);
+        ID userID = new ID(4);
+        ID secondUserID = new ID(5);
+        Click firstClick = new Click(firstClickID, clickDate, userID, isPremium);
+        Click secondClick = new Click(secondClickID, click2Date, secondUserID, isPremium);
+
+        campaign.charge(firstClick);
+        campaign.charge(secondClick);
+
+        double expectedbudget = 99.98;
+        double remainingbudget = campaign.remainingBudget();
+        assertEquals(expectedbudget, remainingbudget);
+    }
+
+
+    @Test
+    public void not_charge_duplicated_clicks(){
+        Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
+        Date clickDateLessThan15secsLater = new Date(2020, 5, 7, 10, 0, 10);
+        Boolean isPremium = false;
+        ID firstClickID = new ID(2);
+        ID secondClickID = new ID(3);
+        ID userID = new ID(4);
+        Click firstClick = new Click(firstClickID, clickDate, userID, isPremium);
+        Click secondClick = new Click(secondClickID, clickDateLessThan15secsLater, userID, isPremium);
+
+        campaign.charge(firstClick);
+        campaign.charge(secondClick);
+
+        double expectedBudget = 99.99;
+        double remainingBudget = campaign.remainingBudget();
+
+        assertEquals(expectedBudget, remainingBudget);
     }
 }

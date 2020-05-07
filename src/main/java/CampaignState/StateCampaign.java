@@ -1,3 +1,7 @@
+package CampaignState;
+
+import Entities.*;
+
 public interface StateCampaign {
     void pause(Campaign campaign);
     void activate(Campaign campaign);

@@ -1,3 +1,8 @@
+package CampaignState;
+
+import CampaignState.StateCampaign;
+import Entities.*;
+
 public class Finished implements StateCampaign {
     @Override
     public void pause(Campaign campaign) {

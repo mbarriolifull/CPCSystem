@@ -1,13 +1,26 @@
+package Entities;
+
+import DataValues.Budget;
+import DataValues.ID;
+import CampaignState.Active;
+import CampaignState.Finished;
+import CampaignState.StateCampaign;
+import Repositories.ClickRepository;
+
+import java.util.List;
+
 public class StandardCampaign implements Campaign {
 
     private ID id;
     private Budget budget;
     private StateCampaign stateCampaign;
+    private ClickRepository chargedClicks;
 
     public StandardCampaign(ID id, Budget budget) {
         this.id = id;
         this.budget = budget;
         stateCampaign = new Active();
+        chargedClicks = new ClickRepository();
     }
 
     @Override
@@ -22,8 +35,12 @@ public class StandardCampaign implements Campaign {
 
     @Override
     public void charge(Click click) {
-        stateCampaign.charge(this, click);
+        if(!isduplicated(click)){
+            stateCampaign.charge(this, click);
+        }
     }
+
+
 
     @Override
     public void chargeToBudget(Click click) {
@@ -36,6 +53,7 @@ public class StandardCampaign implements Campaign {
         if (budget.getBudget() <= 0){
             stateCampaign.finish(this);
         }
+        chargedClicks.add(click);
     }
 
     @Override
@@ -51,7 +69,18 @@ public class StandardCampaign implements Campaign {
         return false;
     }
 
+    @Override
     public void setStateCampaign(StateCampaign stateCampaign) {
         this.stateCampaign = stateCampaign;
+    }
+
+    public boolean isduplicated(Click click) {
+        List<Click> sameUserClick = chargedClicks.retrieveSameUserClicks(click);
+        for (Click currentClick : sameUserClick){
+            if(click.lessThan15seconds(currentClick)){
+                return true;
+            }
+        }
+        return false;
     }
 }

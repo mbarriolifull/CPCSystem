@@ -1,4 +1,9 @@
+package CampaignState;
+
+import Entities.*;
+
 public class Active implements StateCampaign {
+
     @Override
     public void pause(Campaign campaign) {
         campaign.setStateCampaign(new Paused());
@@ -16,6 +21,6 @@ public class Active implements StateCampaign {
 
     @Override
     public void charge(Campaign campaign, Click click) {
-        campaign.chargeToBudget(click);
+            campaign.chargeToBudget(click);
     }
 }

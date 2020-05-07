@@ -1,3 +1,5 @@
+package DataValues;
+
 public class Budget {
     private double budget;
 
@@ -6,7 +8,9 @@ public class Budget {
     }
 
     public double getBudget(){
-        return budget;
+        if (budget%1 == 0)
+            return budget;
+        return Math.round(budget * 100.0) / 100.0;
     }
 
     public void charge(double clickPrice) {

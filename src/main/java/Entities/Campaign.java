@@ -1,3 +1,7 @@
+package Entities;
+
+import CampaignState.StateCampaign;
+
 public interface Campaign {
     void pause();
     void activate();
@@ -9,4 +13,5 @@ public interface Campaign {
     boolean isFinished();
 
     void setStateCampaign(StateCampaign stateCampaign);
+
 }
