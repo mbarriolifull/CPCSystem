@@ -2,36 +2,31 @@ public class StandardCampaign implements Campaign {
 
     private ID id;
     private Budget budget;
-    private CampaignState campaignState;
+    private StateCampaign stateCampaign;
 
     public StandardCampaign(ID id, Budget budget) {
         this.id = id;
         this.budget = budget;
-        campaignState = CampaignState.ACTIVE;
+        stateCampaign = new Active();
     }
 
     @Override
     public void pause() {
-        if(!campaignState.equals(CampaignState.FINISHED)){
-            campaignState = CampaignState.PAUSED;
-        }
+        stateCampaign.pause(this);
     }
 
     @Override
     public void activate() {
-        if(!campaignState.equals(CampaignState.FINISHED)){
-            campaignState = CampaignState.ACTIVE;
-        }
+        stateCampaign.activate(this);
     }
 
     @Override
     public void charge(Click click) {
-        if (campaignState.equals(CampaignState.ACTIVE)) {
-            chargeToBudget(click);
-        }
+        stateCampaign.charge(this, click);
     }
 
-    private void chargeToBudget(Click click) {
+    @Override
+    public void chargeToBudget(Click click) {
         if (!click.isPremium()) {
             budget.charge(0.01);
         }
@@ -39,7 +34,7 @@ public class StandardCampaign implements Campaign {
             budget.charge(0.05);
         }
         if (budget.getBudget() <= 0){
-            campaignState = CampaignState.FINISHED;
+            stateCampaign.finish(this);
         }
     }
 
@@ -50,9 +45,13 @@ public class StandardCampaign implements Campaign {
 
     @Override
     public boolean isFinished() {
-        if (campaignState.equals(CampaignState.FINISHED)){
+        if (Finished.class == stateCampaign.getClass()){
             return true;
         }
         return false;
+    }
+
+    public void setStateCampaign(StateCampaign stateCampaign) {
+        this.stateCampaign = stateCampaign;
     }
 }
