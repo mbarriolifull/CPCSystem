@@ -9,6 +9,10 @@ public class Budget {
         this.budget = budget;
     }
 
+    public Budget(Budget budget) {
+        this.budget = budget.getBudget();
+    }
+
     public double getBudget(){
         if (budget%1 == 0)
             return budget;
