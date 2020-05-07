@@ -17,10 +17,11 @@ of code in all of the different campaigns, I made it an abstract class so its su
 
 All values used are meant to be encapsulated in it's own class, everything but the "boolean" that defines if a Click is 
 a Premium Click or not. <br/>
-There is only one type of ID even though there is a User ID, a Campaign ID and a Click ID. I made it that way because we
+There is only one type of ID in order to make this exercice easier even though there is a User ID, a Campaign ID and a Click ID. I made it that way because we
 were not meant to care about ID generation and simply we would recieve the ID from the exterior. If we had an ID generator
 or something similar that would depend on the previous IDs of certain object to generate the next one or some external 
-repository where we would check if some object exists based on it's ID I would create those 3 different types of IDs.
+repository where we would check if some object exists based on it's ID I would create those 3 different types of IDs. <br/>
+It will be a good practice and I would do it that way in a real environment.
 
 ## Patterns 
 
