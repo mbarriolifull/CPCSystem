@@ -1,6 +1,8 @@
 import Builder.ClickBuilder;
 import DataValues.*;
 import Entities.*;
+import Repositories.ClickRepository;
+import Repositories.ClickRepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,8 @@ public class CampaignShould {
     public void setup(){
         ID campaign_id = new ID(1);
         Budget budget = new Budget(100);
-        campaign = new StandardCampaign(campaign_id, budget);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        campaign = new StandardCampaign(campaign_id, budget, chargedClicks);
     }
 
     @Test
@@ -107,7 +110,8 @@ public class CampaignShould {
     public void finish_when_budget_reaches_0_or_below(){
         ID campaign_id = new ID(2);
         Budget lowBudget = new Budget(0.01);
-        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget, chargedClicks);
 
         Date clickDate = new Date();
         Boolean isPremium = false;
@@ -129,7 +133,8 @@ public class CampaignShould {
     public void not_reactivate_when_they_are_already_finished(){
         ID campaign_id = new ID(2);
         Budget lowBudget = new Budget(0.01);
-        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget, chargedClicks);
 
         Date clickDate = new Date();
         Boolean isPremium = false;

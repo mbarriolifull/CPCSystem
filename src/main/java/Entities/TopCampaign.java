@@ -2,6 +2,7 @@ package Entities;
 
 import DataValues.Budget;
 import DataValues.ID;
+import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
 import java.util.List;
@@ -12,8 +13,8 @@ public class TopCampaign extends Campaign {
     private Budget initialBudget;
 
 
-    public TopCampaign(ID id, Budget budget) {
-        super(id);
+    public TopCampaign(ID id, Budget budget, ClickRepositoryInterface chargedClicks) {
+        super(id, chargedClicks);
         this.budget = budget;
         this.initialBudget = new Budget(budget);
     }

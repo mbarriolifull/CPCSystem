@@ -4,6 +4,8 @@ import DataValues.ID;
 import Entities.Campaign;
 import Entities.Click;
 import Entities.TopCampaign;
+import Repositories.ClickRepository;
+import Repositories.ClickRepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +21,8 @@ public class TopCampaignShould {
     public void setup(){
         ID campaign_id = new ID(1);
         Budget budget = new Budget(100);
-        campaign = new TopCampaign(campaign_id, budget);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        campaign = new TopCampaign(campaign_id, budget, chargedClicks);
     }
 
     @Test
@@ -117,7 +120,8 @@ public class TopCampaignShould {
     public void refund_all_clicks_when_price_of_fake_clicks_is_(){
         ID campaign_id = new ID(1);
         Budget budget = new Budget(10);
-        Campaign lowBudgetCampaign = new TopCampaign(campaign_id, budget);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        Campaign lowBudgetCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
         ID userID = new ID(3);
         ID user2ID = new ID(4);
 

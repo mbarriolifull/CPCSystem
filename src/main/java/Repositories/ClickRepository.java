@@ -1,13 +1,12 @@
 package Repositories;
 
-import DataValues.ID;
 import Entities.Click;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ClickRepository {
+public class ClickRepository implements ClickRepositoryInterface{
     private List<Click> clickList;
 
     public ClickRepository() {
@@ -24,14 +23,17 @@ public class ClickRepository {
         return sameUserClicks;
     }
 
+    @Override
     public boolean isEmpty() {
         return clickList.isEmpty();
     }
 
+    @Override
     public void add(Click click) {
         clickList.add(click);
     }
 
+    @Override
     public List<Click> clicksSince(Date date) {
         List<Click> fakeClickList = new ArrayList<>();
         for (Click currentClick : clickList){
@@ -42,6 +44,7 @@ public class ClickRepository {
         return fakeClickList;
     }
 
+    @Override
     public void remove(Click click) {
         clickList.remove(click);
     }

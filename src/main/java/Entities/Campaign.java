@@ -5,6 +5,7 @@ import CampaignState.Finished;
 import CampaignState.StateCampaign;
 import DataValues.ID;
 import Repositories.ClickRepository;
+import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
 import java.util.List;
@@ -12,12 +13,12 @@ import java.util.List;
 public abstract class Campaign{
     private ID id;
     private StateCampaign stateCampaign;
-    private ClickRepository chargedClicks;
+    private ClickRepositoryInterface chargedClicks;
 
-    public Campaign(ID id) {
+    public Campaign(ID id, ClickRepositoryInterface chargedClicks) {
         this.id = id;
         stateCampaign = new Active();
-        chargedClicks = new ClickRepository();
+        this.chargedClicks = chargedClicks;
     }
 
     public void pause(){

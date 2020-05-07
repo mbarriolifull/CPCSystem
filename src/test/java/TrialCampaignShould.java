@@ -2,6 +2,8 @@ import DataValues.ID;
 import Entities.Campaign;
 import Entities.Click;
 import Entities.TrialCampaign;
+import Repositories.ClickRepository;
+import Repositories.ClickRepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,8 @@ public class TrialCampaignShould {
     @BeforeEach
     public void setup(){
         ID id_campaign = new ID(1);
-        campaign = new TrialCampaign(id_campaign);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        campaign = new TrialCampaign(id_campaign, chargedClicks);
     }
 
     @Test

@@ -1,14 +1,15 @@
 package Entities;
 
 import DataValues.ID;
+import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
 
 public class TrialCampaign extends Campaign {
 
 
-    public TrialCampaign(ID id) {
-        super(id);
+    public TrialCampaign(ID id, ClickRepositoryInterface chargedClicks) {
+        super(id, chargedClicks);
     }
 
 
