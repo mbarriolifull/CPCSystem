@@ -1,3 +1,4 @@
+import Builder.ClickBuilder;
 import DataValues.ID;
 import Entities.Click;
 import org.junit.jupiter.api.Test;
@@ -13,11 +14,19 @@ public class ClickShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         Date click2Date = new Date(2020, 5, 7, 11, 0, 0);
         ID click2ID = new ID(3);
-        Click click2 = new Click(click2ID, click2Date, userID, isPremium);
+        Click click2 = new ClickBuilder(click2ID)
+                .setDate(click2Date)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         boolean lessThan15SecondsDifference = click.lessThan15seconds(click2);
         assertEquals(false, lessThan15SecondsDifference);
@@ -29,11 +38,19 @@ public class ClickShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         Date click2Date = new Date(2020, 5, 7, 10, 0, 5);
         ID click2ID = new ID(3);
-        Click click2 = new Click(click2ID, click2Date, userID, isPremium);
+        Click click2 = new ClickBuilder(click2ID)
+                .setDate(click2Date)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         boolean lessThan15SecondsDifference = click.lessThan15seconds(click2);
         assertEquals(true, lessThan15SecondsDifference);
@@ -45,7 +62,11 @@ public class ClickShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         boolean isFrom = click.isFrom(new ID(3));
         assertEquals(true, isFrom);
@@ -57,7 +78,11 @@ public class ClickShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         boolean isFrom = click.isFrom(new ID(4));
         assertEquals(false, isFrom);
@@ -69,7 +94,11 @@ public class ClickShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         Date someDate = new Date(2020, 5, 7, 9, 0, 0);
         boolean isOlder = click.olderThan(someDate);
@@ -82,7 +111,11 @@ public class ClickShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         Date someDate = new Date(2020, 5, 7, 11, 0, 0);
         boolean isOlder = click.olderThan(someDate);

@@ -1,3 +1,4 @@
+import Builder.ClickBuilder;
 import DataValues.*;
 import Entities.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,8 +26,11 @@ public class CampaignShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
-
+        Click standardClick = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.charge(standardClick);
 
@@ -42,7 +46,11 @@ public class CampaignShould {
         Boolean isPremium = true;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click premiumClick = new Click(clickID, clickDate, userID, isPremium);
+        Click premiumClick = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.charge(premiumClick);
 
@@ -57,7 +65,11 @@ public class CampaignShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+        Click standardClick = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.pause();
         campaign.charge(standardClick);
@@ -75,7 +87,11 @@ public class CampaignShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+        Click standardClick = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.pause();
         campaign.activate();
@@ -97,7 +113,11 @@ public class CampaignShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+        Click standardClick = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         lowBudgetCampaign.charge(standardClick);
 
@@ -115,7 +135,11 @@ public class CampaignShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
+        Click standardClick = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         lowBudgetCampaign.charge(standardClick);
         lowBudgetCampaign.activate();
@@ -133,8 +157,16 @@ public class CampaignShould {
         ID secondClickID = new ID(3);
         ID userID = new ID(4);
         ID secondUserID = new ID(5);
-        Click firstClick = new Click(firstClickID, clickDate, userID, isPremium);
-        Click secondClick = new Click(secondClickID, click2Date, secondUserID, isPremium);
+        Click firstClick = new ClickBuilder(firstClickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
+        Click secondClick = new ClickBuilder(secondClickID)
+                .setDate(click2Date)
+                .setUsersID(secondUserID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.charge(firstClick);
         campaign.charge(secondClick);
@@ -153,8 +185,16 @@ public class CampaignShould {
         ID firstClickID = new ID(2);
         ID secondClickID = new ID(3);
         ID userID = new ID(4);
-        Click firstClick = new Click(firstClickID, clickDate, userID, isPremium);
-        Click secondClick = new Click(secondClickID, clickDateLessThan15secsLater, userID, isPremium);
+        Click firstClick = new ClickBuilder(firstClickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
+        Click secondClick = new ClickBuilder(secondClickID)
+                .setDate(clickDateLessThan15secsLater)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.charge(firstClick);
         campaign.charge(secondClick);
@@ -180,10 +220,26 @@ public class CampaignShould {
         ID click3ID = new ID(7);
         ID click4ID = new ID(8);
 
-        Click click1 = new Click(click1ID, click1Date, userID, isPremium);
-        Click click2 = new Click(click2ID, click2Date, user2ID, isPremium);
-        Click click3 = new Click(click3ID, click3Date, userID, isPremium);
-        Click click4 = new Click(click4ID, click4Date, userID, isPremium);
+        Click click1 = new ClickBuilder(click1ID)
+                .setDate(click1Date)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
+        Click click2 = new ClickBuilder(click2ID)
+                .setDate(click2Date)
+                .setUsersID(user2ID)
+                .setIsPremium(isPremium)
+                .build();
+        Click click3 = new ClickBuilder(click3ID)
+                .setDate(click3Date)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
+        Click click4 = new ClickBuilder(click4ID)
+                .setDate(click4Date)
+                .setUsersID(userID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.charge(click1);
         campaign.charge(click2);
