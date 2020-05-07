@@ -5,6 +5,7 @@ import DataValues.ID;
 import CampaignState.*;
 import Repositories.ClickRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public class StandardCampaign extends Campaign {
@@ -36,5 +37,19 @@ public class StandardCampaign extends Campaign {
     public double remainingBudget() {
         return budget.getBudget();
     }
+
+    public void fakeClicks(Date date, ID userid){
+        List<Click> fakeClicks = super.retrieveFakeClicks(date, userid);
+        for (Click currentClick : fakeClicks){
+            if (currentClick.isPremium()){
+                budget.refund(0.05);
+            }
+            if (!currentClick.isPremium()){
+                budget.refund(0.01);
+            }
+            super.removeClick(currentClick);
+        }
+    }
+
 
 }

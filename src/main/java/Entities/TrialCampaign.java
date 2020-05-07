@@ -5,6 +5,7 @@ import CampaignState.StateCampaign;
 import DataValues.ID;
 import Repositories.ClickRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public class TrialCampaign extends Campaign {
@@ -25,6 +26,10 @@ public class TrialCampaign extends Campaign {
         return 0;
     }
 
+    @Override
+    public void fakeClicks(Date date, ID userID) {
+
+    }
 
 
 }

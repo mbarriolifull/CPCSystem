@@ -6,6 +6,7 @@ import CampaignState.StateCampaign;
 import DataValues.ID;
 import Repositories.ClickRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public abstract class Campaign {
@@ -61,5 +62,15 @@ public abstract class Campaign {
 
     protected void addClick(Click click) {
         chargedClicks.add(click);
+    }
+
+    public List<Click> retrieveFakeClicks(Date date, ID userID){
+        return chargedClicks.fakeClicks(date, userID);
+    }
+
+    public abstract void fakeClicks(Date date, ID userID);
+
+    public void removeClick(Click click){
+        chargedClicks.remove(click);
     }
 }

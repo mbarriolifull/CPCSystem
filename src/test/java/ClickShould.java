@@ -38,4 +38,54 @@ public class ClickShould {
         boolean lessThan15SecondsDifference = click.lessThan15seconds(click2);
         assertEquals(true, lessThan15SecondsDifference);
     }
+
+    @Test
+    public void check_that_a_click_is_from_some_user(){
+        Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click click = new Click(clickID, clickDate, userID, isPremium);
+
+        boolean isFrom = click.isFrom(new ID(3));
+        assertEquals(true, isFrom);
+    }
+
+    @Test
+    public void check_that_a_click_is_not_from_some_user(){
+        Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click click = new Click(clickID, clickDate, userID, isPremium);
+
+        boolean isFrom = click.isFrom(new ID(4));
+        assertEquals(false, isFrom);
+    }
+
+    @Test
+    public void check_that_a_click_is_older_than_some_date(){
+        Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click click = new Click(clickID, clickDate, userID, isPremium);
+
+        Date someDate = new Date(2020, 5, 7, 9, 0, 0);
+        boolean isOlder = click.olderThan(someDate);
+        assertEquals(true, isOlder);
+    }
+
+    @Test
+    public void check_that_a_click_is_Not_older_than_some_date(){
+        Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
+        Boolean isPremium = false;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click click = new Click(clickID, clickDate, userID, isPremium);
+
+        Date someDate = new Date(2020, 5, 7, 11, 0, 0);
+        boolean isOlder = click.olderThan(someDate);
+        assertEquals(false, isOlder);
+    }
 }

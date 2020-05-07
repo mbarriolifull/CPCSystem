@@ -12,6 +12,7 @@ public class Click {
     private boolean isPremium;
 
     public Click(ID id, Date date, ID usersID, boolean isPremium) {
+        this.id = id;
 
         this.date = date;
         this.usersID = usersID;
@@ -29,6 +30,16 @@ public class Click {
 
     public boolean isSameUser(Click click) {
         return this.usersID == click.usersID;
+    }
+
+    public boolean isFrom(ID userID) {
+        if (this.usersID.equals(userID))
+            return true;
+        return false;
+    }
+
+    public boolean olderThan(Date date) {
+        return this.date.compareTo(date) > 0;
     }
 
     @Override

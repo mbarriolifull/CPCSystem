@@ -6,6 +6,7 @@ import DataValues.Budget;
 import DataValues.ID;
 import Repositories.ClickRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public class TopCampaign extends Campaign {
@@ -35,6 +36,11 @@ public class TopCampaign extends Campaign {
     @Override
     public double remainingBudget() {
         return budget.getBudget();
+    }
+
+    @Override
+    public void fakeClicks(Date date, ID userID) {
+
     }
 
 

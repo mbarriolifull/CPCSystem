@@ -1,8 +1,10 @@
 package Repositories;
 
+import DataValues.ID;
 import Entities.Click;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ClickRepository {
@@ -28,5 +30,19 @@ public class ClickRepository {
 
     public void add(Click click) {
         clickList.add(click);
+    }
+
+    public List<Click> fakeClicks(Date date, ID userID) {
+        List<Click> fakeClickList = new ArrayList<>();
+        for (Click currentClick : clickList){
+            if (currentClick.isFrom(userID) && currentClick.olderThan(date)){
+                fakeClickList.add(currentClick);
+            }
+        }
+        return fakeClickList;
+    }
+
+    public void remove(Click click) {
+        clickList.remove(click);
     }
 }

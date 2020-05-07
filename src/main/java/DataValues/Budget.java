@@ -1,5 +1,7 @@
 package DataValues;
 
+import Entities.Click;
+
 public class Budget {
     private double budget;
 
@@ -15,5 +17,10 @@ public class Budget {
 
     public void charge(double clickPrice) {
         budget -= clickPrice;
+    }
+
+    public void refund(double clickPrice) {
+        budget += clickPrice;
+
     }
 }

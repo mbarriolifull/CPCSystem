@@ -164,4 +164,41 @@ public class CampaignShould {
 
         assertEquals(expectedBudget, remainingBudget);
     }
+
+    @Test
+    public void refund_the_clicks_made_by_some_userid_since_a_given_date(){
+        ID userID = new ID(3);
+        ID user2ID = new ID(4);
+
+        Date click1Date = new Date(2020, 5, 7, 10, 0, 0);
+        Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
+        Date click3Date = new Date(2020, 5, 7, 11, 0, 0);
+        Date click4Date = new Date(2020, 5, 7, 11, 30, 0);
+        Boolean isPremium = false;
+        ID click1ID = new ID(5);
+        ID click2ID = new ID(6);
+        ID click3ID = new ID(7);
+        ID click4ID = new ID(8);
+
+        Click click1 = new Click(click1ID, click1Date, userID, isPremium);
+        Click click2 = new Click(click2ID, click2Date, user2ID, isPremium);
+        Click click3 = new Click(click3ID, click3Date, userID, isPremium);
+        Click click4 = new Click(click4ID, click4Date, userID, isPremium);
+
+        campaign.charge(click1);
+        campaign.charge(click2);
+        campaign.charge(click3);
+        campaign.charge(click4);
+
+        Date fakeClickDate = new Date(2020,5,7,10,50,0);
+        ID fakeClickUserId = new ID(3);
+
+        campaign.fakeClicks(fakeClickDate, fakeClickUserId);
+
+        double remainingBudget = campaign.remainingBudget();
+        double expectedBudget = 99.98;
+
+        assertEquals(expectedBudget, remainingBudget);
+
+    }
 }
