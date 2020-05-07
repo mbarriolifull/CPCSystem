@@ -25,6 +25,9 @@ public class StandardCampaign implements Campaign {
         if (!click.isPremium()){
             budget.charge(0.01);
         }
+        if (click.isPremium()){
+            budget.charge(0.05);
+        }
     }
 
     @Override

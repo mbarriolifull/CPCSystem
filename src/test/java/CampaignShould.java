@@ -16,19 +16,33 @@ public class CampaignShould {
         Boolean isPremium = false;
         ID clickID = new ID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click standardClick = new Click(clickID, clickDate, userID, isPremium);
 
 
-        campaign.charge(click);
+        campaign.charge(standardClick);
 
-        double remaining_budget = campaign.remainingBudget();
+        double remainingBudget = campaign.remainingBudget();
         double expectedRemainingBudget = 99.99;
-        assertEquals(expectedRemainingBudget, remaining_budget);
+        assertEquals(expectedRemainingBudget, remainingBudget);
     }
 
     @Test
-    public void test(){
+    public void charge_premium_click(){
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(100);
+        Campaign campaign = new StandardCampaign(campaign_id, budget);
 
+        Date clickDate = new Date();
+        Boolean isPremium = true;
+        ID clickID = new ID(2);
+        ID userID = new ID(3);
+        Click premiumClick = new Click(clickID, clickDate, userID, isPremium);
+
+        campaign.charge(premiumClick);
+
+        double remainingBudget = campaign.remainingBudget();
+        double expectedRemainingBudget = 99.95;
+        assertEquals(expectedRemainingBudget, remainingBudget);
     }
 
 
