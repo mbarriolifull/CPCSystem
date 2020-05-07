@@ -8,35 +8,14 @@ import Repositories.ClickRepository;
 
 import java.util.List;
 
-public class TopCampaign implements Campaign {
+public class TopCampaign extends Campaign {
 
-    private ID id;
     private Budget budget;
-    private StateCampaign stateCampaign;
-    private ClickRepository chargedClicks;
+
 
     public TopCampaign(ID id, Budget budget) {
-        this.id = id;
+        super(id);
         this.budget = budget;
-        stateCampaign = new Active();
-        chargedClicks = new ClickRepository();
-    }
-
-    @Override
-    public void pause() {
-        stateCampaign.pause(this);
-    }
-
-    @Override
-    public void activate() {
-        stateCampaign.activate(this);
-    }
-
-    @Override
-    public void charge(Click click) {
-        if(!isduplicated(click)){
-            stateCampaign.charge(this, click);
-        }
     }
 
     @Override
@@ -48,9 +27,9 @@ public class TopCampaign implements Campaign {
             budget.charge(0.2);
         }
         if (budget.getBudget() <= 0){
-            stateCampaign.finish(this);
+            super.finishCampaign();
         }
-        chargedClicks.add(click);
+        super.addClick(click);
     }
 
     @Override
@@ -58,27 +37,5 @@ public class TopCampaign implements Campaign {
         return budget.getBudget();
     }
 
-    @Override
-    public boolean isFinished() {
-        if (Finished.class == stateCampaign.getClass()){
-            return true;
-        }
-        return false;
-    }
 
-    @Override
-    public void setStateCampaign(StateCampaign stateCampaign) {
-        this.stateCampaign = stateCampaign;
-    }
-
-    @Override
-    public boolean isduplicated(Click click) {
-        List<Click> sameUserClick = chargedClicks.retrieveSameUserClicks(click);
-        for (Click currentClick : sameUserClick){
-            if(click.lessThan15seconds(currentClick)){
-                return true;
-            }
-        }
-        return false;
-    }
 }

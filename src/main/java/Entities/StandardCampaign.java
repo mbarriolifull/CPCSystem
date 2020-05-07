@@ -7,38 +7,14 @@ import Repositories.ClickRepository;
 
 import java.util.List;
 
-public class StandardCampaign implements Campaign {
+public class StandardCampaign extends Campaign {
 
-    private ID id;
     private Budget budget;
-    private StateCampaign stateCampaign;
-    private ClickRepository chargedClicks;
 
     public StandardCampaign(ID id, Budget budget) {
-        this.id = id;
+        super(id);
         this.budget = budget;
-        stateCampaign = new Active();
-        chargedClicks = new ClickRepository();
     }
-
-    @Override
-    public void pause() {
-        stateCampaign.pause(this);
-    }
-
-    @Override
-    public void activate() {
-        stateCampaign.activate(this);
-    }
-
-    @Override
-    public void charge(Click click) {
-        if(!isduplicated(click)){
-            stateCampaign.charge(this, click);
-        }
-    }
-
-
 
     @Override
     public void chargeToBudget(Click click) {
@@ -49,9 +25,11 @@ public class StandardCampaign implements Campaign {
             budget.charge(0.05);
         }
         if (budget.getBudget() <= 0){
-            stateCampaign.finish(this);
+            super.finishCampaign();
+            //stateCampaign.finish(this);
         }
-        chargedClicks.add(click);
+        super.addClick(click);
+        //chargedClicks.add(click);
     }
 
     @Override
@@ -59,27 +37,4 @@ public class StandardCampaign implements Campaign {
         return budget.getBudget();
     }
 
-    @Override
-    public boolean isFinished() {
-        if (Finished.class == stateCampaign.getClass()){
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void setStateCampaign(StateCampaign stateCampaign) {
-        this.stateCampaign = stateCampaign;
-    }
-
-    @Override
-    public boolean isduplicated(Click click) {
-        List<Click> sameUserClick = chargedClicks.retrieveSameUserClicks(click);
-        for (Click currentClick : sameUserClick){
-            if(click.lessThan15seconds(currentClick)){
-                return true;
-            }
-        }
-        return false;
-    }
 }
