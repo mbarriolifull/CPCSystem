@@ -1,6 +1,8 @@
+
 #Cost Per Click Campaign System
 
 ##Project
+
 This is a Java project using maven as abuild automation tool. <br/>
 It cointains all tests using junit framework needed in order to secure that all functionalities required can be done. Those tests are located 
 at src/test/java, there is a test class for each class needed to be tested.
