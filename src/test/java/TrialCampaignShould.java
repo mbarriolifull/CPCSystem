@@ -1,6 +1,6 @@
 import DataValues.ClickID;
 import DataValues.ClickType;
-import DataValues.ID;
+import DataValues.CampaignID;
 import DataValues.UserID;
 import Entities.Campaign;
 import Entities.Click;
@@ -20,9 +20,9 @@ public class TrialCampaignShould {
 
     @BeforeEach
     public void setup(){
-        ID id_campaign = new ID(1);
+        CampaignID campaignId_campaign = new CampaignID(1);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        campaign = new TrialCampaign(id_campaign, chargedClicks);
+        campaign = new TrialCampaign(campaignId_campaign, chargedClicks);
     }
 
     @Test
@@ -44,11 +44,11 @@ public class TrialCampaignShould {
 
 
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(standardClick1);
         chargedClicks.add(standardClick2);
-        Campaign expectedCampaign = new TrialCampaign(campaign_id, chargedClicks);
+        Campaign expectedCampaign = new TrialCampaign(campaign_Campaign_id, chargedClicks);
 
 
         assertEquals(expectedCampaign, campaign);

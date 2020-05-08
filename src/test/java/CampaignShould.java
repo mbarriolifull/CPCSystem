@@ -16,10 +16,10 @@ public class CampaignShould {
 
     @BeforeEach
     public void setup(){
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(100);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        campaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        campaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
     }
 
     @Test
@@ -37,11 +37,11 @@ public class CampaignShould {
 
         campaign.charge(standardClick);
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.99);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(standardClick);
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
 
         assertEquals(expectedCampaign, campaign);
     }
@@ -62,11 +62,11 @@ public class CampaignShould {
         campaign.charge(premiumClick);
 
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.95);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(premiumClick);
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
 
         assertEquals(expectedCampaign, campaign);
     }
@@ -86,10 +86,10 @@ public class CampaignShould {
         campaign.pause();
         campaign.charge(standardClick);
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(100);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
         expectedCampaign.pause();
 
 
@@ -113,11 +113,11 @@ public class CampaignShould {
         campaign.activate();
         campaign.charge(standardClick);
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.99);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(standardClick);
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
 
 
 
@@ -126,10 +126,10 @@ public class CampaignShould {
 
     @Test
     public void finish_when_budget_reaches_0_or_below(){
-        ID campaign_id = new ID(2);
+        CampaignID campaign_Campaign_id = new CampaignID(2);
         Budget lowBudget = new Budget(0.01);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget, chargedClicks);
+        Campaign lowBudgetCampaign = new StandardCampaign(campaign_Campaign_id, lowBudget, chargedClicks);
 
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
@@ -149,10 +149,10 @@ public class CampaignShould {
 
     @Test
     public void not_reactivate_when_they_are_already_finished(){
-        ID campaign_id = new ID(2);
+        CampaignID campaign_Campaign_id = new CampaignID(2);
         Budget lowBudget = new Budget(0.01);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        Campaign lowBudgetCampaign = new StandardCampaign(campaign_id, lowBudget, chargedClicks);
+        Campaign lowBudgetCampaign = new StandardCampaign(campaign_Campaign_id, lowBudget, chargedClicks);
 
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
@@ -196,12 +196,12 @@ public class CampaignShould {
 
 
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.98);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(firstClick);
         chargedClicks.add(secondClick);
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
 
         assertEquals(expectedCampaign, campaign);
     }
@@ -230,11 +230,11 @@ public class CampaignShould {
         campaign.charge(secondClick);
 
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.99);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(firstClick);
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
 
 
         assertEquals(expectedCampaign, campaign);
@@ -286,12 +286,12 @@ public class CampaignShould {
 
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.98);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(click1);
         chargedClicks.add(click2);
-        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new StandardCampaign(campaign_Campaign_id, budget, chargedClicks);
 
 
         assertEquals(expectedCampaign, campaign);

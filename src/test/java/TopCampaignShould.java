@@ -2,7 +2,6 @@ import Builder.ClickBuilder;
 import DataValues.*;
 import Entities.Campaign;
 import Entities.Click;
-import Entities.StandardCampaign;
 import Entities.TopCampaign;
 import Repositories.ClickRepository;
 import Repositories.ClickRepositoryInterface;
@@ -19,10 +18,10 @@ public class TopCampaignShould {
 
     @BeforeEach
     public void setup(){
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(100);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        campaign = new TopCampaign(campaign_id, budget, chargedClicks);
+        campaign = new TopCampaign(campaign_Campaign_id, budget, chargedClicks);
     }
 
     @Test
@@ -40,11 +39,11 @@ public class TopCampaignShould {
 
         campaign.charge(standardClick);
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.90);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(standardClick);
-        Campaign expectedCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new TopCampaign(campaign_Campaign_id, budget, chargedClicks);
 
         assertEquals(expectedCampaign, campaign);
     }
@@ -64,11 +63,11 @@ public class TopCampaignShould {
 
         campaign.charge(premiumClick);
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.80);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(premiumClick);
-        Campaign expectedCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new TopCampaign(campaign_Campaign_id, budget, chargedClicks);
 
         assertEquals(expectedCampaign, campaign);
     }
@@ -128,12 +127,12 @@ public class TopCampaignShould {
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
 
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(99.80);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         chargedClicks.add(click1);
         chargedClicks.add(click2);
-        Campaign expectedCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+        Campaign expectedCampaign = new TopCampaign(campaign_Campaign_id, budget, chargedClicks);
 
 
         assertEquals(expectedCampaign, campaign);
@@ -141,10 +140,10 @@ public class TopCampaignShould {
 
     @Test
     public void refund_the_clicks_made_by_some_userid_since_a_given_date_which_the_total_cost_is_MORE_than_5_percent_of_total_budget(){
-        ID campaign_id = new ID(1);
+        CampaignID campaign_Campaign_id = new CampaignID(1);
         Budget budget = new Budget(10);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
-        Campaign lowBudgetCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+        Campaign lowBudgetCampaign = new TopCampaign(campaign_Campaign_id, budget, chargedClicks);
         UserID userID = new UserID(3);
         UserID user2ID = new UserID(4);
 
@@ -213,12 +212,12 @@ public class TopCampaignShould {
         UserID fakeClickUserId = new UserID(3);
         lowBudgetCampaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
-        ID expected_campaign_id = new ID(1);
+        CampaignID expected_campaign_Campaign_id = new CampaignID(1);
         Budget expected_budget = new Budget(9.6);
         ClickRepositoryInterface expected_chargedClicks = new ClickRepository();
         expected_chargedClicks.add(click1);
         expected_chargedClicks.add(click2);
-        Campaign expectedCampaign = new TopCampaign(expected_campaign_id, expected_budget, expected_chargedClicks);
+        Campaign expectedCampaign = new TopCampaign(expected_campaign_Campaign_id, expected_budget, expected_chargedClicks);
 
 
         assertEquals(expectedCampaign, lowBudgetCampaign);

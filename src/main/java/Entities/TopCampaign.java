@@ -1,7 +1,7 @@
 package Entities;
 
 import DataValues.Budget;
-import DataValues.ID;
+import DataValues.CampaignID;
 import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
 
@@ -15,8 +15,8 @@ public class TopCampaign extends Campaign {
     private Budget initialBudget;
 
 
-    public TopCampaign(ID id, Budget budget, ClickRepositoryInterface chargedClicks) {
-        super(id, chargedClicks);
+    public TopCampaign(CampaignID campaignId, Budget budget, ClickRepositoryInterface chargedClicks) {
+        super(campaignId, chargedClicks);
         this.budget = budget;
         this.initialBudget = new Budget(budget);
     }

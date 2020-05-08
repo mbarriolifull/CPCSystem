@@ -1,6 +1,6 @@
 package Entities;
 
-import DataValues.ID;
+import DataValues.CampaignID;
 import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
 
@@ -9,8 +9,8 @@ import java.util.Date;
 public class TrialCampaign extends Campaign {
 
 
-    public TrialCampaign(ID id, ClickRepositoryInterface chargedClicks) {
-        super(id, chargedClicks);
+    public TrialCampaign(CampaignID campaignId, ClickRepositoryInterface chargedClicks) {
+        super(campaignId, chargedClicks);
     }
 
 

@@ -2,7 +2,6 @@ package Builder;
 
 import DataValues.ClickID;
 import DataValues.ClickType;
-import DataValues.ID;
 import DataValues.UserID;
 import Entities.Click;
 

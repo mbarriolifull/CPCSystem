@@ -2,10 +2,10 @@ package DataValues;
 
 import java.util.Objects;
 
-public class ID {
+public class CampaignID {
     private int id;
 
-    public ID(int id) {
+    public CampaignID(int id) {
         this.id = id;
     }
 
@@ -13,8 +13,8 @@ public class ID {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ID id1 = (ID) o;
-        return id == id1.id;
+        CampaignID campaignId1 = (CampaignID) o;
+        return id == campaignId1.id;
     }
 
     @Override

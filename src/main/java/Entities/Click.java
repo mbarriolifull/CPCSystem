@@ -2,7 +2,6 @@ package Entities;
 
 import DataValues.ClickID;
 import DataValues.ClickType;
-import DataValues.ID;
 import DataValues.UserID;
 
 import java.util.Date;

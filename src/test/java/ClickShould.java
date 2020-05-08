@@ -1,7 +1,6 @@
 import Builder.ClickBuilder;
 import DataValues.ClickID;
 import DataValues.ClickType;
-import DataValues.ID;
 import DataValues.UserID;
 import Entities.Click;
 import org.junit.jupiter.api.Test;

@@ -3,9 +3,8 @@ package Entities;
 import CampaignState.Active;
 import CampaignState.Finished;
 import CampaignState.StateCampaign;
-import DataValues.ID;
+import DataValues.CampaignID;
 import DataValues.UserID;
-import Repositories.ClickRepository;
 import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
@@ -13,12 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class Campaign{
-    private ID id;
+    private CampaignID campaignId;
     private StateCampaign stateCampaign;
     private ClickRepositoryInterface chargedClicks;
 
-    public Campaign(ID id, ClickRepositoryInterface chargedClicks) {
-        this.id = id;
+    public Campaign(CampaignID campaignId, ClickRepositoryInterface chargedClicks) {
+        this.campaignId = campaignId;
         stateCampaign = new Active();
         this.chargedClicks = chargedClicks;
     }
@@ -82,13 +81,13 @@ public abstract class Campaign{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Campaign campaign = (Campaign) o;
-        return Objects.equals(id, campaign.id) &&
+        return Objects.equals(campaignId, campaign.campaignId) &&
                 stateCampaign.getClass() == campaign.stateCampaign.getClass() &&
                 Objects.equals(chargedClicks, campaign.chargedClicks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, stateCampaign, chargedClicks);
+        return Objects.hash(campaignId, stateCampaign, chargedClicks);
     }
 }

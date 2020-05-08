@@ -1,7 +1,7 @@
 package Entities;
 
 import DataValues.Budget;
-import DataValues.ID;
+import DataValues.CampaignID;
 import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
 
@@ -13,8 +13,8 @@ public class StandardCampaign extends Campaign {
 
     private Budget budget;
 
-    public StandardCampaign(ID id, Budget budget, ClickRepositoryInterface chargedClicks) {
-        super(id, chargedClicks);
+    public StandardCampaign(CampaignID campaignId, Budget budget, ClickRepositoryInterface chargedClicks) {
+        super(campaignId, chargedClicks);
         this.budget = budget;
     }
 
