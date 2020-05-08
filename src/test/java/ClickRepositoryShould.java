@@ -1,3 +1,6 @@
+import Builder.ClickBuilder;
+import DataValues.ClickID;
+import DataValues.ClickType;
 import DataValues.ID;
 import Entities.Click;
 import Repositories.ClickRepository;
@@ -17,10 +20,14 @@ public class ClickRepositoryShould {
         ClickRepository clickRepository = new ClickRepository();
 
         Date clickDate = new Date();
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new ClickBuilder(clickID)
+                .setDate(clickDate)
+                .setUsersID(userID)
+                .setIsPremium(clickType)
+                .build();
 
         clickRepository.add(click);
 
@@ -36,12 +43,21 @@ public class ClickRepositoryShould {
         ID userID2 = new ID(4);
 
         Date clickDate = new Date();
-        Boolean isPremium = false;
-        ID click1ID = new ID(2);
-        ID click2ID = new ID(3);
+        ClickType clickType = new ClickType(false);
+        ClickID click1ID = new ClickID(2);
+        ClickID click2ID = new ClickID(3);
 
-        Click click1 = new Click(click1ID, clickDate, userID1, isPremium);
-        Click click2 = new Click(click2ID, clickDate, userID2, isPremium);
+        Click click1 = new ClickBuilder(click1ID)
+                .setDate(clickDate)
+                .setUsersID(userID1)
+                .setIsPremium(clickType)
+                .build();
+        Click click2 = new ClickBuilder(click2ID)
+                .setDate(clickDate)
+                .setUsersID(userID2)
+                .setIsPremium(clickType)
+                .build();
+
 
         clickRepository.add(click1);
         clickRepository.add(click2);
@@ -64,16 +80,32 @@ public class ClickRepositoryShould {
         Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
         Date click3Date = new Date(2020, 5, 7, 11, 0, 0);
         Date click4Date = new Date(2020, 5, 7, 11, 30, 0);
-        Boolean isPremium = false;
-        ID click1ID = new ID(5);
-        ID click2ID = new ID(6);
-        ID click3ID = new ID(7);
-        ID click4ID = new ID(8);
+        ClickType clickType = new ClickType(false);
+        ClickID click1ID = new ClickID(5);
+        ClickID click2ID = new ClickID(6);
+        ClickID click3ID = new ClickID(7);
+        ClickID click4ID = new ClickID(8);
 
-        Click click1 = new Click(click1ID, click1Date, userID, isPremium);
-        Click click2 = new Click(click2ID, click2Date, user2ID, isPremium);
-        Click click3 = new Click(click3ID, click3Date, userID, isPremium);
-        Click click4 = new Click(click4ID, click4Date, userID, isPremium);
+        Click click1 = new ClickBuilder(click1ID)
+                .setDate(click1Date)
+                .setUsersID(userID)
+                .setIsPremium(clickType)
+                .build();
+        Click click2 = new ClickBuilder(click2ID)
+                .setDate(click2Date)
+                .setUsersID(user2ID)
+                .setIsPremium(clickType)
+                .build();
+        Click click3 = new ClickBuilder(click3ID)
+                .setDate(click3Date)
+                .setUsersID(userID)
+                .setIsPremium(clickType)
+                .build();
+        Click click4 = new ClickBuilder(click4ID)
+                .setDate(click4Date)
+                .setUsersID(userID)
+                .setIsPremium(clickType)
+                .build();
 
         clickRepository.add(click1);
         clickRepository.add(click2);
@@ -95,10 +127,10 @@ public class ClickRepositoryShould {
         ClickRepository clickRepository = new ClickRepository();
 
         Date clickDate = new Date();
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
-        Click click = new Click(clickID, clickDate, userID, isPremium);
+        Click click = new Click(clickID, clickDate, userID, clickType);
 
         clickRepository.add(click);
         clickRepository.remove(click);

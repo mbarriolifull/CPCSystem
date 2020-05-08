@@ -1,26 +1,28 @@
 package Entities;
 
+import DataValues.ClickID;
+import DataValues.ClickType;
 import DataValues.ID;
 
 import java.util.Date;
 import java.util.Objects;
 
 public class Click {
-    private ID id;
+    private ClickID id;
     private ID usersID;
     private Date date;
-    private boolean isPremium;
+    private ClickType clickType;
 
-    public Click(ID id, Date date, ID usersID, boolean isPremium) {
+    public Click(ClickID id, Date date, ID usersID, ClickType clickType ) {
         this.id = id;
 
         this.date = date;
         this.usersID = usersID;
-        this.isPremium = isPremium;
+        this.clickType = clickType;
     }
 
     public boolean isPremium() {
-        return isPremium;
+        return clickType.isPremium();
     }
 
     public boolean lessThan15seconds(Click clickToCompare) {
@@ -47,7 +49,7 @@ public class Click {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Click click = (Click) o;
-        return isPremium == click.isPremium &&
+        return clickType == click.clickType &&
                 Objects.equals(id, click.id) &&
                 Objects.equals(usersID, click.usersID) &&
                 Objects.equals(date, click.date);
@@ -55,6 +57,6 @@ public class Click {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, usersID, date, isPremium);
+        return Objects.hash(id, usersID, date, clickType);
     }
 }

@@ -1,5 +1,7 @@
 import Builder.ClickBuilder;
 import DataValues.Budget;
+import DataValues.ClickID;
+import DataValues.ClickType;
 import DataValues.ID;
 import Entities.Campaign;
 import Entities.Click;
@@ -29,13 +31,13 @@ public class TopCampaignShould {
     @Test
     public void charge_non_premium_click_for_top_campaign(){
         Date clickDate = new Date();
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
 
@@ -53,13 +55,13 @@ public class TopCampaignShould {
     @Test
     public void charge_premium_click_for_top_campaign(){
         Date clickDate = new Date();
-        Boolean isPremium = true;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(true);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click premiumClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
 
@@ -84,37 +86,38 @@ public class TopCampaignShould {
         Date click3Date = new Date(2020, 5, 7, 11, 0, 0);
         Date click4Date = new Date(2020, 5, 7, 11, 30, 0);
         Date click5Date = new Date(2020, 5, 7, 11, 40, 0);
-        Boolean isPremium = false;
-        ID click1ID = new ID(5);
-        ID click2ID = new ID(6);
-        ID click3ID = new ID(7);
-        ID click4ID = new ID(8);
-        ID click5ID = new ID(9);
+        ClickType clickType = new ClickType(false);
+        ClickID click1ID = new ClickID(5);
+        ClickID click2ID = new ClickID(6);
+        ClickID click3ID = new ClickID(7);
+        ClickID click4ID = new ClickID(8);
+        ClickID click5ID = new ClickID(9);
+
 
         Click click1 = new ClickBuilder(click1ID)
                 .setDate(click1Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click2 = new ClickBuilder(click2ID)
                 .setDate(click2Date)
                 .setUsersID(user2ID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click3 = new ClickBuilder(click3ID)
                 .setDate(click3Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click4 = new ClickBuilder(click4ID)
                 .setDate(click4Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click5 = new ClickBuilder(click5ID)
                 .setDate(click5Date)
                 .setUsersID(user2ID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         campaign.charge(click1);
@@ -155,49 +158,49 @@ public class TopCampaignShould {
         Date click5Date = new Date(2020, 5, 7, 11, 40, 0);
         Date click6Date = new Date(2020, 5, 7, 11, 50, 0);
         Date click7Date = new Date(2020, 5, 7, 11, 60, 0);
-        Boolean isPremium = true;
-        ID click1ID = new ID(5);
-        ID click2ID = new ID(6);
-        ID click3ID = new ID(7);
-        ID click4ID = new ID(8);
-        ID click5ID = new ID(9);
-        ID click6ID = new ID(10);
-        ID click7ID = new ID(11);
+        ClickType clickType = new ClickType(true);
+        ClickID click1ID = new ClickID(5);
+        ClickID click2ID = new ClickID(6);
+        ClickID click3ID = new ClickID(7);
+        ClickID click4ID = new ClickID(8);
+        ClickID click5ID = new ClickID(9);
+        ClickID click6ID = new ClickID(10);
+        ClickID click7ID = new ClickID(11);
 
         Click click1 = new ClickBuilder(click1ID)
                 .setDate(click1Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click2 = new ClickBuilder(click2ID)
                 .setDate(click2Date)
                 .setUsersID(user2ID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click3 = new ClickBuilder(click3ID)
                 .setDate(click3Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click4 = new ClickBuilder(click4ID)
                 .setDate(click4Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click5 = new ClickBuilder(click5ID)
                 .setDate(click5Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click6 = new ClickBuilder(click6ID)
                 .setDate(click6Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
         Click click7 = new ClickBuilder(click7ID)
                 .setDate(click7Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
 

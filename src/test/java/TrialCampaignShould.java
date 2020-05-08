@@ -1,3 +1,5 @@
+import DataValues.ClickID;
+import DataValues.ClickType;
 import DataValues.ID;
 import Entities.Campaign;
 import Entities.Click;
@@ -28,13 +30,13 @@ public class TrialCampaignShould {
 
         Date clickDate = new Date(2020,5,7,10,0,0);
         Date click2Date = new Date(2020,5,7,11,0,0);
-        Boolean isPremium = false;
-        Boolean isPremium2 = true;
-        ID clickID1 = new ID(2);
-        ID clickID2 = new ID(3);
+        ClickType clickType = new ClickType(false);
+        ClickType clickType2 = new ClickType(true);
+        ClickID clickID1 = new ClickID(2);
+        ClickID clickID2 = new ClickID(3);
         ID userID = new ID(3);
-        Click standardClick1 = new Click(clickID1, clickDate, userID, isPremium);
-        Click standardClick2 = new Click(clickID2, click2Date, userID, isPremium2);
+        Click standardClick1 = new Click(clickID1, clickDate, userID, clickType);
+        Click standardClick2 = new Click(clickID2, click2Date, userID, clickType2);
 
         campaign.charge(standardClick1);
         campaign.charge(standardClick2);

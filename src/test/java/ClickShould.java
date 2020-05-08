@@ -1,4 +1,6 @@
 import Builder.ClickBuilder;
+import DataValues.ClickID;
+import DataValues.ClickType;
 import DataValues.ID;
 import Entities.Click;
 import org.junit.jupiter.api.Test;
@@ -11,21 +13,21 @@ public class ClickShould {
     @Test
     public void state_that_2_clicks_are_done_with_a_difference_greater_than_15_seconds(){
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         Date click2Date = new Date(2020, 5, 7, 11, 0, 0);
-        ID click2ID = new ID(3);
+        ClickID click2ID = new ClickID(3);
         Click click2 = new ClickBuilder(click2ID)
                 .setDate(click2Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         boolean lessThan15SecondsDifference = click.lessThan15seconds(click2);
@@ -35,21 +37,21 @@ public class ClickShould {
     @Test
     public void state_that_2_clicks_are_done_with_a_difference_below_15_seconds(){
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         Date click2Date = new Date(2020, 5, 7, 10, 0, 5);
-        ID click2ID = new ID(3);
+        ClickID click2ID = new ClickID(3);
         Click click2 = new ClickBuilder(click2ID)
                 .setDate(click2Date)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         boolean lessThan15SecondsDifference = click.lessThan15seconds(click2);
@@ -59,13 +61,13 @@ public class ClickShould {
     @Test
     public void check_that_a_click_is_from_some_user(){
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         boolean isFrom = click.isFrom(new ID(3));
@@ -75,13 +77,13 @@ public class ClickShould {
     @Test
     public void check_that_a_click_is_not_from_some_user(){
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         boolean isFrom = click.isFrom(new ID(4));
@@ -91,13 +93,13 @@ public class ClickShould {
     @Test
     public void check_that_a_click_is_older_than_some_date(){
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         Date someDate = new Date(2020, 5, 7, 9, 0, 0);
@@ -108,13 +110,13 @@ public class ClickShould {
     @Test
     public void check_that_a_click_is_Not_older_than_some_date(){
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
-        Boolean isPremium = false;
-        ID clickID = new ID(2);
+        ClickType clickType = new ClickType(false);
+        ClickID clickID = new ClickID(2);
         ID userID = new ID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
-                .setIsPremium(isPremium)
+                .setIsPremium(clickType)
                 .build();
 
         Date someDate = new Date(2020, 5, 7, 11, 0, 0);

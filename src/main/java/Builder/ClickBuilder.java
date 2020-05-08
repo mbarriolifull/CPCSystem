@@ -1,5 +1,7 @@
 package Builder;
 
+import DataValues.ClickID;
+import DataValues.ClickType;
 import DataValues.ID;
 import Entities.Click;
 
@@ -7,13 +9,13 @@ import java.util.Date;
 
 public class ClickBuilder {
 
-    private ID id;
+    private ClickID id;
     private ID usersID;
     private Date date;
-    private boolean isPremium;
+    private ClickType clickType;
 
 
-    public ClickBuilder(ID id){
+    public ClickBuilder(ClickID id){
         this.id = id;
     }
 
@@ -27,12 +29,12 @@ public class ClickBuilder {
         return this;
     }
 
-    public ClickBuilder setIsPremium(boolean isPremium){
-        this.isPremium = isPremium;
+    public ClickBuilder setIsPremium(ClickType clickType){
+        this.clickType = clickType;
         return this;
     }
 
     public Click build(){
-        return new Click(id, date, usersID, isPremium);
+        return new Click(id, date, usersID, clickType);
     }
 }
