@@ -58,7 +58,7 @@ public abstract class Campaign{
         stateCampaign.finish(this);
     }
 
-    protected void addClick(Click click) {
+    public void addClick(Click click) {
         chargedClicks.add(click);
     }
 
