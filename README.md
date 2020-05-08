@@ -39,7 +39,10 @@ need that and I assume that those IDs are always given, it is not created.
 #### Builder Pattern for the Click object
 
 Since a Click has a complex constructor with many parameters, I decided to create a Builder for that object in order not
-to commit unwanted mistakes at the time of creating the instance.
+to commit unwanted mistakes at the time of creating the instance. <br/>
+If we do not want to leave the constructor for the Object Click on public, we would have 2 options, either make it protected
+and put the class ClickBuilder within the same package of Click, or make it Private and implement the ClickBuilder class inside 
+the Click class.
 
 #### State Pattern for a campaign state
 
