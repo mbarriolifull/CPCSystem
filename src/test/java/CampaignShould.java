@@ -37,9 +37,13 @@ public class CampaignShould {
 
         campaign.charge(standardClick);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedRemainingBudget = 99.99;
-        assertEquals(expectedRemainingBudget, remainingBudget);
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.99);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(standardClick);
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
@@ -57,9 +61,14 @@ public class CampaignShould {
 
         campaign.charge(premiumClick);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedRemainingBudget = 99.95;
-        assertEquals(expectedRemainingBudget, remainingBudget);
+
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.95);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(premiumClick);
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
@@ -77,10 +86,14 @@ public class CampaignShould {
         campaign.pause();
         campaign.charge(standardClick);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedRemainingBudget = 100;
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(100);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+        expectedCampaign.pause();
 
-        assertEquals(expectedRemainingBudget, remainingBudget);
+
+        assertEquals(expectedCampaign, campaign);
 
     }
 
@@ -100,10 +113,15 @@ public class CampaignShould {
         campaign.activate();
         campaign.charge(standardClick);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedRemainingBudget = 99.99;
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.99);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(standardClick);
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
 
-        assertEquals(expectedRemainingBudget, remainingBudget);
+
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
@@ -176,9 +194,16 @@ public class CampaignShould {
         campaign.charge(firstClick);
         campaign.charge(secondClick);
 
-        double expectedbudget = 99.98;
-        double remainingbudget = campaign.remainingBudget();
-        assertEquals(expectedbudget, remainingbudget);
+
+
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.98);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(firstClick);
+        chargedClicks.add(secondClick);
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+
+        assertEquals(expectedCampaign, campaign);
     }
 
 
@@ -204,10 +229,15 @@ public class CampaignShould {
         campaign.charge(firstClick);
         campaign.charge(secondClick);
 
-        double expectedBudget = 99.99;
-        double remainingBudget = campaign.remainingBudget();
 
-        assertEquals(expectedBudget, remainingBudget);
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.99);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(firstClick);
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
+
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
@@ -256,10 +286,15 @@ public class CampaignShould {
 
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedBudget = 99.98;
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.98);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(click1);
+        chargedClicks.add(click2);
+        Campaign expectedCampaign = new StandardCampaign(campaign_id, budget, chargedClicks);
 
-        assertEquals(expectedBudget, remainingBudget);
+
+        assertEquals(expectedCampaign, campaign);
 
     }
 }

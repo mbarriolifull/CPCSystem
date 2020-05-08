@@ -10,9 +10,9 @@ public class BudgetShould {
         Budget budget = new Budget(100);
 
         budget.charge(0.05);
-        double expectedBudget = 99.95;
-        double remainingBudget = budget.getBudget();
-        assertEquals(expectedBudget, remainingBudget);
+        Budget expectedBudget = new Budget(99.95);
+        //double remainingBudget = budget.getBudget();
+        assertEquals(expectedBudget, budget);
     }
 
     @Test
@@ -22,9 +22,9 @@ public class BudgetShould {
         budget.charge(0.01);
         budget.charge(0.01);
 
-        double expectedBudget = 99.98;
-        double remainingBudget = budget.getBudget();
-        assertEquals(expectedBudget, remainingBudget);
+        Budget expectedBudget = new Budget(99.98);
+        //double remainingBudget = budget.getBudget();
+        assertEquals(expectedBudget, budget);
     }
 
     @Test
@@ -36,8 +36,9 @@ public class BudgetShould {
 
         budget.refund(0.01);
 
-        double expectedBudget = 99.94;
-        double remainingBudget = budget.getBudget();
-        assertEquals(expectedBudget, remainingBudget);
+        Budget expectedBudget = new Budget(99.94);
+        //double remainingBudget = budget.getBudget();
+        //double remainingBudget = budget.getBudget();
+        assertEquals(expectedBudget, budget);
     }
 }

@@ -3,6 +3,7 @@ import DataValues.Budget;
 import DataValues.ID;
 import Entities.Campaign;
 import Entities.Click;
+import Entities.StandardCampaign;
 import Entities.TopCampaign;
 import Repositories.ClickRepository;
 import Repositories.ClickRepositoryInterface;
@@ -40,9 +41,13 @@ public class TopCampaignShould {
 
         campaign.charge(standardClick);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedRemainingBudget = 99.90;
-        assertEquals(expectedRemainingBudget, remainingBudget);
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.90);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(standardClick);
+        Campaign expectedCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
@@ -60,9 +65,13 @@ public class TopCampaignShould {
 
         campaign.charge(premiumClick);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedRemainingBudget = 99.80;
-        assertEquals(expectedRemainingBudget, remainingBudget);
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.80);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(premiumClick);
+        Campaign expectedCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
@@ -74,11 +83,13 @@ public class TopCampaignShould {
         Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
         Date click3Date = new Date(2020, 5, 7, 11, 0, 0);
         Date click4Date = new Date(2020, 5, 7, 11, 30, 0);
+        Date click5Date = new Date(2020, 5, 7, 11, 40, 0);
         Boolean isPremium = false;
         ID click1ID = new ID(5);
         ID click2ID = new ID(6);
         ID click3ID = new ID(7);
         ID click4ID = new ID(8);
+        ID click5ID = new ID(9);
 
         Click click1 = new ClickBuilder(click1ID)
                 .setDate(click1Date)
@@ -100,24 +111,36 @@ public class TopCampaignShould {
                 .setUsersID(userID)
                 .setIsPremium(isPremium)
                 .build();
+        Click click5 = new ClickBuilder(click5ID)
+                .setDate(click5Date)
+                .setUsersID(user2ID)
+                .setIsPremium(isPremium)
+                .build();
 
         campaign.charge(click1);
         campaign.charge(click2);
         campaign.charge(click3);
         campaign.charge(click4);
+        campaign.charge(click5);
 
         Date fakeClickDate = new Date(2020,5,7,10,50,0);
         ID fakeClickUserId = new ID(3);
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
-        double remainingBudget = campaign.remainingBudget();
-        double expectedBudget = 99.8;
 
-        assertEquals(expectedBudget, remainingBudget);
+        ID campaign_id = new ID(1);
+        Budget budget = new Budget(99.80);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(click1);
+        chargedClicks.add(click2);
+        Campaign expectedCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
+
+
+        assertEquals(expectedCampaign, campaign);
     }
 
     @Test
-    public void refund_all_clicks_when_price_of_fake_clicks_is_(){
+    public void refund_the_clicks_made_by_some_userid_since_a_given_date_which_the_total_cost_is_MORE_than_5_percent_of_total_budget(){
         ID campaign_id = new ID(1);
         Budget budget = new Budget(10);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
@@ -190,9 +213,14 @@ public class TopCampaignShould {
         ID fakeClickUserId = new ID(3);
         lowBudgetCampaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
-        double remainingBudget = lowBudgetCampaign.remainingBudget();
-        double expectedBudget = 9.6;
+        ID expected_campaign_id = new ID(1);
+        Budget expected_budget = new Budget(9.6);
+        ClickRepositoryInterface expected_chargedClicks = new ClickRepository();
+        expected_chargedClicks.add(click1);
+        expected_chargedClicks.add(click2);
+        Campaign expectedCampaign = new TopCampaign(expected_campaign_id, expected_budget, expected_chargedClicks);
 
-        assertEquals(expectedBudget, remainingBudget);
+
+        assertEquals(expectedCampaign, lowBudgetCampaign);
     }
 }

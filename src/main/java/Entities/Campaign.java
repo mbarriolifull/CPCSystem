@@ -9,6 +9,7 @@ import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Campaign{
     private ID id;
@@ -48,7 +49,7 @@ public abstract class Campaign{
 
     public abstract void chargeToBudget(Click click);
 
-    public abstract double remainingBudget();
+    //public abstract double remainingBudget();
 
     public boolean isFinished(){
         if(Finished.class == stateCampaign.getClass()){
@@ -73,5 +74,20 @@ public abstract class Campaign{
 
     public void removeClick(Click click){
         chargedClicks.remove(click);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campaign campaign = (Campaign) o;
+        return Objects.equals(id, campaign.id) &&
+                stateCampaign.getClass() == campaign.stateCampaign.getClass() &&
+                Objects.equals(chargedClicks, campaign.chargedClicks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, stateCampaign, chargedClicks);
     }
 }

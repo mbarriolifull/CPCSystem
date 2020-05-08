@@ -19,11 +19,6 @@ public class TrialCampaign extends Campaign {
     }
 
     @Override
-    public double remainingBudget() {
-        return 0;
-    }
-
-    @Override
     public void fakeClicks(Date date, ID userID) {
 
     }

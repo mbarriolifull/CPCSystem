@@ -37,14 +37,17 @@ public class TrialCampaignShould {
         Click standardClick2 = new Click(clickID2, click2Date, userID, isPremium2);
 
         campaign.charge(standardClick1);
-
-        double expectedRemainingBudget = 0;
-        double remainingBudget = campaign.remainingBudget();
-        assertEquals(expectedRemainingBudget, remainingBudget);
-
         campaign.charge(standardClick2);
 
-        double remainingBudget2 = campaign.remainingBudget();
-        assertEquals(expectedRemainingBudget, remainingBudget2);
+
+
+        ID campaign_id = new ID(1);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        chargedClicks.add(standardClick1);
+        chargedClicks.add(standardClick2);
+        Campaign expectedCampaign = new TrialCampaign(campaign_id, chargedClicks);
+
+
+        assertEquals(expectedCampaign, campaign);
     }
 }

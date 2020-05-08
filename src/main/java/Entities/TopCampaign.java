@@ -6,6 +6,7 @@ import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class TopCampaign extends Campaign {
 
@@ -27,16 +28,16 @@ public class TopCampaign extends Campaign {
         if (click.isPremium()) {
             budget.charge(0.2);
         }
-        if (budget.getBudget() <= 0){
+        if (budget.isFinished()){
             super.finishCampaign();
         }
         super.addClick(click);
     }
 
-    @Override
+    /*@Override
     public double remainingBudget() {
         return budget.getBudget();
-    }
+    }*/
 
 
     @Override
@@ -60,7 +61,7 @@ public class TopCampaign extends Campaign {
             super.removeClick(currentClick);
 
         }
-        double fivePercentOfTotalBudget = (5*initialBudget.getBudget())/100;
+        double fivePercentOfTotalBudget = initialBudget.getFivePercent();
         if(totalFakeClickPrice < fivePercentOfTotalBudget){
             budget.refund(totalClickPriceSinceDate);
         }
@@ -70,4 +71,17 @@ public class TopCampaign extends Campaign {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TopCampaign that = (TopCampaign) o;
+        return Objects.equals(budget, that.budget);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), budget, initialBudget);
+    }
 }
