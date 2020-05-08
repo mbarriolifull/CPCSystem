@@ -1,5 +1,4 @@
-import DataValues.Budget;
-import Entities.Click;
+import Entities.Budget;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +10,6 @@ public class BudgetShould {
 
         budget.charge(0.05);
         Budget expectedBudget = new Budget(99.95);
-        //double remainingBudget = budget.getBudget();
         assertEquals(expectedBudget, budget);
     }
 
@@ -23,7 +21,6 @@ public class BudgetShould {
         budget.charge(0.01);
 
         Budget expectedBudget = new Budget(99.98);
-        //double remainingBudget = budget.getBudget();
         assertEquals(expectedBudget, budget);
     }
 
@@ -37,8 +34,6 @@ public class BudgetShould {
         budget.refund(0.01);
 
         Budget expectedBudget = new Budget(99.94);
-        //double remainingBudget = budget.getBudget();
-        //double remainingBudget = budget.getBudget();
         assertEquals(expectedBudget, budget);
     }
 }

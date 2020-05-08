@@ -1,4 +1,4 @@
-package DataValues;
+package Entities;
 
 import java.util.Objects;
 

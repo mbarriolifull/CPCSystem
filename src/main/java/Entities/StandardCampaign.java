@@ -1,6 +1,5 @@
 package Entities;
 
-import DataValues.Budget;
 import DataValues.CampaignID;
 import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;

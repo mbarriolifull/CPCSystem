@@ -1,5 +1,6 @@
 import Builder.ClickBuilder;
 import DataValues.*;
+import Entities.Budget;
 import Entities.Campaign;
 import Entities.Click;
 import Entities.TopCampaign;

@@ -1,6 +1,5 @@
 package Entities;
 
-import DataValues.Budget;
 import DataValues.CampaignID;
 import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
@@ -34,12 +33,6 @@ public class TopCampaign extends Campaign {
         }
         super.addClick(click);
     }
-
-    /*@Override
-    public double remainingBudget() {
-        return budget.getBudget();
-    }*/
-
 
     @Override
     public void fakeClicks(Date date, UserID userID) {

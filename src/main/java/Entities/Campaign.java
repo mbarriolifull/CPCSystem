@@ -47,10 +47,6 @@ public abstract class Campaign{
         return false;
     }
 
-    public abstract void chargeToBudget(Click click);
-
-    //public abstract double remainingBudget();
-
     public boolean isFinished(){
         if(Finished.class == stateCampaign.getClass()){
             return true;
@@ -70,11 +66,13 @@ public abstract class Campaign{
         return chargedClicks.clicksSince(date);
     }
 
-    public abstract void fakeClicks(Date date, UserID userID);
-
     public void removeClick(Click click){
         chargedClicks.remove(click);
     }
+
+    public abstract void fakeClicks(Date date, UserID userID);
+
+    public abstract void chargeToBudget(Click click);
 
     @Override
     public boolean equals(Object o) {

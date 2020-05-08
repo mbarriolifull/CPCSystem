@@ -5,23 +5,28 @@
 
 This is a Java project using maven as abuild automation tool. <br/>
 It cointains all tests using junit framework needed in order to secure that all functionalities required can be done. Those tests are located 
-at src/test/java, there is a test class for each class needed to be tested and they make a 100% coverage of the aimed class.
+at src/test/java, there is a test class for each class needed to be tested and they fulfill all usecases that could happen.
 
 ## Campaign abstract class
 
 Inside entities there is an abstract class called Campaign, this is the base class which all Campaign types inherit. <br/>
 Initially this was an Interface defining the necessary methods that a Campaign should be able to perform, due to repetition
-of code in all of the different campaigns, I made it an abstract class so its subclasses could inherit the functionality itself.
+of code in all of the different campaigns, I made it an abstract class so its subclasses could inherit the functionality itself.<br/>
+In the tests when we compare the expected campaing with the one that is expected to perform the funcionality we arrange
+the expectedCampaign after the trigger (the part of the test where we call the method/funcionlity that we are testing)
+in order to increase readability, it could also be set at the arrange part (where we declare all variables and instances
+nedded to perform the test).
 
 ## Data encapsulation
 
-All values used are meant to be encapsulated in it's own class, everything but the "boolean" that defines if a Click is 
-a Premium Click or not. <br/>
-There is only one type of ID in order to make this exercice easier even though there is a User ID, a Campaign ID and a Click ID. I made it that way because we
-were not meant to care about ID generation and simply we would recieve the ID from the exterior. If we had an ID generator
-or something similar that would depend on the previous IDs of certain object to generate the next one or some external 
-repository where we would check if some object exists based on it's ID I would create those 3 different types of IDs. <br/>
-It will be a good practice and I would do it that way in a real environment.
+All values used are meant to be encapsulated in it's own class.
+
+## Services
+
+We could have a service that would generate a date and in the tests we would stub it's output in order to
+generate the expected date, but since Clicks are passed and are generated at the time of performing 
+the click we assume that a Date object will be passed, this could be done with any other data type that would generate a
+Timestamp (ex: Timestamp, Instant, LocalDate...).
 
 ## Patterns 
 
@@ -53,7 +58,7 @@ Inversion Principle.
 
 ## Entrypoint
 
-Whenever an entrypoint is implemented it will need to create the Campaigns choosing between a Standard, Top or Trial campaign 
+Whenever an entrypoint is implemented it will need to create the Campaigns choosing between a Standard, Top or Trial campaign (a Factory Method Pattern could be used)
 and injecting a Click Repository via the constructor. <br/>
 If we would want to store the several campaigns we will need a campaign repository which would have to implement the following funcionlities
 in order to be able to perform campaign funcionalities: <br/>
@@ -71,16 +76,16 @@ Challenge document. There should be some brief explanation about that as well in
 
 #### Sprint 1
 
-In this part we only knew about one Campaign type which needed to be able to have different states (Paused, Active & Finished)
+In this part we only knew about one Campaign type which needed to be able to have different **states** (Paused, Active & Finished)
  meaning that no Clicks can be charged when in Paused or Finished state,
- perform charges depending on the Click type (premium or non-premium click) costing 0.05€ & 0.01€ respectivelyand changing 
- the state of the campaing to FINISHED whenever the budget reaches 0. <br/>
+ perform **charges** depending on the Click type (premium or non-premium click) costing 0.05€ & 0.01€ respectivelyand changing 
+ the state of the campaing to **FINISHED** whenever the budget reaches 0. <br/>
  
  Since there was no need to keep track of the Clicks in order to validate this Sprint the ClickRepository was not yet created.
 
 #### Sprint 2
 
-In this part we needed to check for duplicated clicks which were the ones that were performed by the same user in less than
+In this part we needed to check for **duplicated** clicks which were the ones that were performed by the same user in less than
 15 seconds of time in between, those clicks that were duplicated could not be charged. To comply with this sprint a ClickRepository 
 was needed to be implemented since at the time of charging for a click, first we needed to check at the campaign's past 
 charged clicks to check whether or not it was duplicated. <br/>
@@ -88,10 +93,10 @@ At this point a way to compare users inside a click entity was also needed to be
 
 #### Sprint 3
 
-This was the part where we wanted to create several types of campaigns so at this moment, an interface is created for the 
+This was the part where we wanted to create several **types of campaigns** so at this moment, an interface is created for the 
 several campaigns and the one that we already implemented was named StandardCampaign. <br/> 
-Two types of campaing are created additionaly, a Trial campaign which would not have a budget since it does not charge any
-clicks and it is free, and a Top campaign which would slightly differ from the standard one, only in charging prices. <br/>
+Two types of campaing are created additionaly, a **Trial campaign** which would not have a budget since it does not charge any
+clicks and it is free, and a **Top campaign** which would slightly differ from the standard one, only in charging prices. <br/>
 
 When all campaigns were done, I could see that there was a lot of code repetition, in order to solve it, instead of an
 interface I created an abstract class to implement there all the common code that the campaigns share.
@@ -99,7 +104,7 @@ interface I created an abstract class to implement there all the common code tha
 
 #### Sprint 4
 
-At this point we wanted a way to refund fake clicks given by a BOT (certain user ID) since a certain date. <br/>
+At this point we wanted a way to **refund fake clicks** given by a BOT (certain **user ID**) since a certain **date**. <br/>
 We added functionalities at our repository to retrieve all clicks since a certain Date, a way to compare those clicks 
 with the userID given and a way for the budget to efectuate refunds. <br/>
 Since the different campaigns needed to perform different actions about those refunds, each campaing type implementes it's
