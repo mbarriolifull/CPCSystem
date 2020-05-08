@@ -117,4 +117,8 @@ At this point we wanted a way to **refund fake clicks** given by a BOT (certain 
 We added functionalities at our repository to retrieve all clicks since a certain Date, a way to compare those clicks 
 with the userID given and a way for the budget to efectuate refunds. <br/>
 Since the different campaigns needed to perform different actions about those refunds, each campaing type implementes it's
-own way to calculate those refunds.
+own way to calculate those refunds. <br/>
+
+To make a clarification about this sprint. As said in the challenge description a Top/Premium Campaign should refund all clicks
+since a specific date if the cost of the fake clicks is not higher than the 5% of the total budge, I assumed that the total
+budget was the one in which the campaign started.
