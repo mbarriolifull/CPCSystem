@@ -56,7 +56,7 @@ public class TopCampaign extends Campaign {
 
         }
         double fivePercentOfTotalBudget = initialBudget.getFivePercent();
-        if(totalFakeClickPrice < fivePercentOfTotalBudget){
+        if(totalClickPriceSinceDate < fivePercentOfTotalBudget){
             budget.refund(totalClickPriceSinceDate);
         }
         else{
