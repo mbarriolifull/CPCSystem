@@ -223,4 +223,91 @@ public class TopCampaignShould {
 
         assertEquals(expectedCampaign, lowBudgetCampaign);
     }
+
+    @Test
+    public void refund_fake_clicks_ONLY_if_the_total_click_cost_is_not_higher_than_5percent_not_only_the_fake_clicks_cost(){
+        CampaignID campaign_Campaign_id = new CampaignID(1);
+        Budget budget = new Budget(10);
+        ClickRepositoryInterface chargedClicks = new ClickRepository();
+        Campaign lowBudgetCampaign = new TopCampaign(campaign_Campaign_id, budget, chargedClicks);
+        UserID userID = new UserID(3);
+        UserID user2ID = new UserID(4);
+
+        Date click1Date = new Date(2020, 5, 7, 10, 0, 0);
+        Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
+        Date click3Date = new Date(2020, 5, 7, 11, 0, 0);
+        Date click4Date = new Date(2020, 5, 7, 11, 30, 0);
+        Date click5Date = new Date(2020, 5, 7, 11, 40, 0);
+        Date click6Date = new Date(2020, 5, 7, 11, 50, 0);
+        Date click7Date = new Date(2020, 5, 7, 11, 60, 0);
+        ClickType clickType = new ClickType(true);
+        ClickID click1ID = new ClickID(5);
+        ClickID click2ID = new ClickID(6);
+        ClickID click3ID = new ClickID(7);
+        ClickID click4ID = new ClickID(8);
+        ClickID click5ID = new ClickID(9);
+        ClickID click6ID = new ClickID(10);
+        ClickID click7ID = new ClickID(11);
+
+        Click click1 = new ClickBuilder(click1ID)
+                .setDate(click1Date)
+                .setUsersID(userID)
+                .setIsPremium(clickType)
+                .build();
+        Click click2 = new ClickBuilder(click2ID)
+                .setDate(click2Date)
+                .setUsersID(user2ID)
+                .setIsPremium(clickType)
+                .build();
+        Click click3 = new ClickBuilder(click3ID)
+                .setDate(click3Date)
+                .setUsersID(userID)
+                .setIsPremium(clickType)
+                .build();
+        Click click4 = new ClickBuilder(click4ID)
+                .setDate(click4Date)
+                .setUsersID(user2ID)
+                .setIsPremium(clickType)
+                .build();
+        Click click5 = new ClickBuilder(click5ID)
+                .setDate(click5Date)
+                .setUsersID(user2ID)
+                .setIsPremium(clickType)
+                .build();
+        Click click6 = new ClickBuilder(click6ID)
+                .setDate(click6Date)
+                .setUsersID(user2ID)
+                .setIsPremium(clickType)
+                .build();
+        Click click7 = new ClickBuilder(click7ID)
+                .setDate(click7Date)
+                .setUsersID(user2ID)
+                .setIsPremium(clickType)
+                .build();
+
+        lowBudgetCampaign.charge(click1);
+        lowBudgetCampaign.charge(click2);
+        lowBudgetCampaign.charge(click3);
+        lowBudgetCampaign.charge(click4);
+        lowBudgetCampaign.charge(click5);
+        lowBudgetCampaign.charge(click6);
+        lowBudgetCampaign.charge(click7);
+
+        Date fakeClickDate = new Date(2020,5,7,10,50,0);
+        UserID fakeClickUserId = new UserID(3);
+        lowBudgetCampaign.fakeClicks(fakeClickDate, fakeClickUserId);
+
+        CampaignID expected_campaign_Campaign_id = new CampaignID(1);
+        Budget expected_budget = new Budget(8.8);
+        ClickRepositoryInterface expected_chargedClicks = new ClickRepository();
+        expected_chargedClicks.add(click1);
+        expected_chargedClicks.add(click2);
+        Campaign expectedCampaign = new TopCampaign(expected_campaign_Campaign_id, expected_budget, expected_chargedClicks);
+
+
+        assertEquals(expectedCampaign, lowBudgetCampaign);
+
+    }
+
+
 }
