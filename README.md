@@ -120,5 +120,5 @@ Since the different campaigns needed to perform different actions about those re
 own way to calculate those refunds. <br/>
 
 To make a clarification about this sprint. As said in the challenge description a Top/Premium Campaign should refund all clicks
-since a specific date if the cost of the fake clicks is not higher than the 5% of the total budge, I assumed that the total
+since a specific date if the cost of the clicks is not higher than the 5% of the total budget, I assumed that the total
 budget was the one in which the campaign started.
