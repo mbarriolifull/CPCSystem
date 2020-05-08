@@ -3,9 +3,13 @@
 
 ## Project
 
-This is a Java project using maven as abuild automation tool. <br/>
+This is a Java project using maven as abuild automation tool choosing the IntelliJ IDE. <br/>
 It cointains all tests using junit framework needed in order to secure that all functionalities required can be done. Those tests are located 
-at src/test/java, there is a test class for each class needed to be tested and they fulfill all usecases that could happen.
+at src/test/java, there is a test class for each class needed to be tested and they fulfill all usecases that could happen. <br/>
+In order to pass those tests we either need to add a target for the test classes or inside those classes click on the "play" button. <br/>
+Since I did not use the TDD approximation of Outside-In an acceptance test is not created even though since we are only 
+developing single campaigns functionalities and we do test all use cases for each campaign type (common functionalities are tested in the Campaign should 
+which uses a StandardCampaign).
 
 ## Campaign abstract class
 
@@ -26,7 +30,9 @@ All values used are meant to be encapsulated in it's own class.
 We could have a service that would generate a date and in the tests we would stub it's output in order to
 generate the expected date, but since Clicks are passed and are generated at the time of performing 
 the click we assume that a Date object will be passed, this could be done with any other data type that would generate a
-Timestamp (ex: Timestamp, Instant, LocalDate...).
+Timestamp (ex: Timestamp, Instant, LocalDate...). <br/>
+As well we could have some type of service to generate IDs in case we needed to assign ID to new campaigns, since we do not 
+need that and I assume that those IDs are always given, it is not created.
 
 ## Patterns 
 
@@ -38,7 +44,7 @@ to commit unwanted mistakes at the time of creating the instance.
 #### State Pattern for a campaign state
 
 Even though the different states of the campaign (Active, Paused, Finished) don't do anything at the time of performing 
-some actions (ex: When in Paused stated, if the campaing performs a pause() it executes nothing) I decided it'll be a good
+some actions (ex: When in Paused stated, if the campaing performs a pause() or a charge() it executes nothing) I decided it'll be a good
 idea to do it that way since the program could escalate with more states or the existing states could slightly change in
 its behaviour.
 
