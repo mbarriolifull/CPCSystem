@@ -28,7 +28,7 @@ public class CampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -52,7 +52,7 @@ public class CampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(true);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click premiumClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -76,7 +76,7 @@ public class CampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -102,7 +102,7 @@ public class CampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -134,7 +134,7 @@ public class CampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -157,7 +157,7 @@ public class CampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -178,8 +178,8 @@ public class CampaignShould {
         ClickType clickType = new ClickType(false);
         ClickID firstClickID = new ClickID(2);
         ClickID secondClickID = new ClickID(3);
-        ID userID = new ID(4);
-        ID secondUserID = new ID(5);
+        UserID userID = new UserID(4);
+        UserID secondUserID = new UserID(5);
         Click firstClick = new ClickBuilder(firstClickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -214,7 +214,7 @@ public class CampaignShould {
         ClickType clickType = new ClickType(false);
         ClickID firstClickID = new ClickID(2);
         ClickID secondClickID = new ClickID(3);
-        ID userID = new ID(4);
+        UserID userID = new UserID(4);
         Click firstClick = new ClickBuilder(firstClickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -242,8 +242,8 @@ public class CampaignShould {
 
     @Test
     public void refund_the_clicks_made_by_some_userid_since_a_given_date(){
-        ID userID = new ID(3);
-        ID user2ID = new ID(4);
+        UserID userID = new UserID(3);
+        UserID user2ID = new UserID(4);
 
         Date click1Date = new Date(2020, 5, 7, 10, 0, 0);
         Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
@@ -282,7 +282,7 @@ public class CampaignShould {
         campaign.charge(click4);
 
         Date fakeClickDate = new Date(2020,5,7,10,50,0);
-        ID fakeClickUserId = new ID(3);
+        UserID fakeClickUserId = new UserID(3);
 
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 

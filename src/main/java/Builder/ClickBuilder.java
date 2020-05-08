@@ -3,6 +3,7 @@ package Builder;
 import DataValues.ClickID;
 import DataValues.ClickType;
 import DataValues.ID;
+import DataValues.UserID;
 import Entities.Click;
 
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
 public class ClickBuilder {
 
     private ClickID id;
-    private ID usersID;
+    private UserID usersID;
     private Date date;
     private ClickType clickType;
 
@@ -19,7 +20,7 @@ public class ClickBuilder {
         this.id = id;
     }
 
-    public ClickBuilder setUsersID(ID usersID) {
+    public ClickBuilder setUsersID(UserID usersID) {
         this.usersID = usersID;
         return this;
     }

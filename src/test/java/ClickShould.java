@@ -2,6 +2,7 @@ import Builder.ClickBuilder;
 import DataValues.ClickID;
 import DataValues.ClickType;
 import DataValues.ID;
+import DataValues.UserID;
 import Entities.Click;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class ClickShould {
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -39,7 +40,7 @@ public class ClickShould {
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -63,14 +64,14 @@ public class ClickShould {
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
                 .setIsPremium(clickType)
                 .build();
 
-        boolean isFrom = click.isFrom(new ID(3));
+        boolean isFrom = click.isFrom(new UserID(3));
         assertEquals(true, isFrom);
     }
 
@@ -79,14 +80,14 @@ public class ClickShould {
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
                 .setIsPremium(clickType)
                 .build();
 
-        boolean isFrom = click.isFrom(new ID(4));
+        boolean isFrom = click.isFrom(new UserID(4));
         assertEquals(false, isFrom);
     }
 
@@ -95,7 +96,7 @@ public class ClickShould {
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -112,7 +113,7 @@ public class ClickShould {
         Date clickDate = new Date(2020, 5, 7, 10, 0, 0);
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)

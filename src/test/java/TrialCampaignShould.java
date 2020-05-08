@@ -1,6 +1,7 @@
 import DataValues.ClickID;
 import DataValues.ClickType;
 import DataValues.ID;
+import DataValues.UserID;
 import Entities.Campaign;
 import Entities.Click;
 import Entities.TrialCampaign;
@@ -34,7 +35,7 @@ public class TrialCampaignShould {
         ClickType clickType2 = new ClickType(true);
         ClickID clickID1 = new ClickID(2);
         ClickID clickID2 = new ClickID(3);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick1 = new Click(clickID1, clickDate, userID, clickType);
         Click standardClick2 = new Click(clickID2, click2Date, userID, clickType2);
 

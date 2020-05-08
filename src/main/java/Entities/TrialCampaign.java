@@ -1,6 +1,7 @@
 package Entities;
 
 import DataValues.ID;
+import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
@@ -19,7 +20,7 @@ public class TrialCampaign extends Campaign {
     }
 
     @Override
-    public void fakeClicks(Date date, ID userID) {
+    public void fakeClicks(Date date, UserID userID) {
 
     }
 

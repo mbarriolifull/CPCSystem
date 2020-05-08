@@ -2,6 +2,7 @@ package Entities;
 
 import DataValues.Budget;
 import DataValues.ID;
+import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
@@ -27,26 +28,21 @@ public class StandardCampaign extends Campaign {
         }
         if (budget.isFinished()){
             super.finishCampaign();
-            //stateCampaign.finish(this);
         }
         super.addClick(click);
-        //chargedClicks.add(click);
+
     }
 
-   /* @Override
-    public double remainingBudget() {
-        return budget.getBudget();
-    }*/
 
     @Override
-    public void fakeClicks(Date date, ID userid){
+    public void fakeClicks(Date date, UserID userid){
         List<Click> clicksSinceDate = super.retrieveCicksSince(date);
         for (Click currentClick : clicksSinceDate){
             calculateRefund(userid, currentClick);
         }
     }
 
-    private void calculateRefund(ID userid, Click currentClick) {
+    private void calculateRefund(UserID userid, Click currentClick) {
         if (currentClick.isFrom(userid)){
             calculateRefundType(currentClick);
             super.removeClick(currentClick);

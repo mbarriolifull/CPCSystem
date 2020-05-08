@@ -2,6 +2,7 @@ package Entities;
 
 import DataValues.Budget;
 import DataValues.ID;
+import DataValues.UserID;
 import Repositories.ClickRepositoryInterface;
 
 import java.util.Date;
@@ -41,7 +42,7 @@ public class TopCampaign extends Campaign {
 
 
     @Override
-    public void fakeClicks(Date date, ID userID) {
+    public void fakeClicks(Date date, UserID userID) {
         List<Click>  clicksSinceDate = super.retrieveCicksSince(date);
         double totalFakeClickPrice = 0;
         double totalClickPriceSinceDate = 0;

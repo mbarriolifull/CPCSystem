@@ -2,6 +2,7 @@ import Builder.ClickBuilder;
 import DataValues.ClickID;
 import DataValues.ClickType;
 import DataValues.ID;
+import DataValues.UserID;
 import Entities.Click;
 import Repositories.ClickRepository;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class ClickRepositoryShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -39,8 +40,8 @@ public class ClickRepositoryShould {
     @Test
     public void retrieve_a_click_list_with_clicks_from_the_same_user(){
         ClickRepository clickRepository = new ClickRepository();
-        ID userID1 = new ID(3);
-        ID userID2 = new ID(4);
+        UserID userID1 = new UserID(3);
+        UserID userID2 = new UserID(4);
 
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
@@ -73,8 +74,8 @@ public class ClickRepositoryShould {
     @Test
     public void retrieve_clicks_since_given_date(){
         ClickRepository clickRepository = new ClickRepository();
-        ID userID = new ID(3);
-        ID user2ID = new ID(4);
+        UserID userID = new UserID(3);
+        UserID user2ID = new UserID(4);
 
         Date click1Date = new Date(2020, 5, 7, 10, 0, 0);
         Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
@@ -129,7 +130,7 @@ public class ClickRepositoryShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click click = new Click(clickID, clickDate, userID, clickType);
 
         clickRepository.add(click);

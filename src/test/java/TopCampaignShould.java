@@ -1,8 +1,5 @@
 import Builder.ClickBuilder;
-import DataValues.Budget;
-import DataValues.ClickID;
-import DataValues.ClickType;
-import DataValues.ID;
+import DataValues.*;
 import Entities.Campaign;
 import Entities.Click;
 import Entities.StandardCampaign;
@@ -33,7 +30,7 @@ public class TopCampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(false);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click standardClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -57,7 +54,7 @@ public class TopCampaignShould {
         Date clickDate = new Date();
         ClickType clickType = new ClickType(true);
         ClickID clickID = new ClickID(2);
-        ID userID = new ID(3);
+        UserID userID = new UserID(3);
         Click premiumClick = new ClickBuilder(clickID)
                 .setDate(clickDate)
                 .setUsersID(userID)
@@ -78,8 +75,8 @@ public class TopCampaignShould {
 
     @Test
     public void refund_the_clicks_made_by_some_userid_since_a_given_date_which_the_total_cost_is_less_than_5_percent_of_total_budget(){
-        ID userID = new ID(3);
-        ID user2ID = new ID(4);
+        UserID userID = new UserID(3);
+        UserID user2ID = new UserID(4);
 
         Date click1Date = new Date(2020, 5, 7, 10, 0, 0);
         Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
@@ -127,7 +124,7 @@ public class TopCampaignShould {
         campaign.charge(click5);
 
         Date fakeClickDate = new Date(2020,5,7,10,50,0);
-        ID fakeClickUserId = new ID(3);
+        UserID fakeClickUserId = new UserID(3);
         campaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
 
@@ -148,8 +145,8 @@ public class TopCampaignShould {
         Budget budget = new Budget(10);
         ClickRepositoryInterface chargedClicks = new ClickRepository();
         Campaign lowBudgetCampaign = new TopCampaign(campaign_id, budget, chargedClicks);
-        ID userID = new ID(3);
-        ID user2ID = new ID(4);
+        UserID userID = new UserID(3);
+        UserID user2ID = new UserID(4);
 
         Date click1Date = new Date(2020, 5, 7, 10, 0, 0);
         Date click2Date = new Date(2020, 5, 7, 10, 30, 0);
@@ -213,7 +210,7 @@ public class TopCampaignShould {
         lowBudgetCampaign.charge(click7);
 
         Date fakeClickDate = new Date(2020,5,7,10,50,0);
-        ID fakeClickUserId = new ID(3);
+        UserID fakeClickUserId = new UserID(3);
         lowBudgetCampaign.fakeClicks(fakeClickDate, fakeClickUserId);
 
         ID expected_campaign_id = new ID(1);

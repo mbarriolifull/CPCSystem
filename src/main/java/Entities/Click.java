@@ -3,17 +3,18 @@ package Entities;
 import DataValues.ClickID;
 import DataValues.ClickType;
 import DataValues.ID;
+import DataValues.UserID;
 
 import java.util.Date;
 import java.util.Objects;
 
 public class Click {
     private ClickID id;
-    private ID usersID;
+    private UserID usersID;
     private Date date;
     private ClickType clickType;
 
-    public Click(ClickID id, Date date, ID usersID, ClickType clickType ) {
+    public Click(ClickID id, Date date, UserID usersID, ClickType clickType ) {
         this.id = id;
 
         this.date = date;
@@ -34,7 +35,7 @@ public class Click {
         return this.usersID == click.usersID;
     }
 
-    public boolean isFrom(ID userID) {
+    public boolean isFrom(UserID userID) {
         if (this.usersID.equals(userID))
             return true;
         return false;

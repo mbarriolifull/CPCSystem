@@ -4,6 +4,7 @@ import CampaignState.Active;
 import CampaignState.Finished;
 import CampaignState.StateCampaign;
 import DataValues.ID;
+import DataValues.UserID;
 import Repositories.ClickRepository;
 import Repositories.ClickRepositoryInterface;
 
@@ -70,7 +71,7 @@ public abstract class Campaign{
         return chargedClicks.clicksSince(date);
     }
 
-    public abstract void fakeClicks(Date date, ID userID);
+    public abstract void fakeClicks(Date date, UserID userID);
 
     public void removeClick(Click click){
         chargedClicks.remove(click);
